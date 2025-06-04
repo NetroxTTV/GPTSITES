@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Sites</title>
+  <style>
+    /* Cleaner Purple & Black Theme based on Completion Tracker */
+    :root {
+      --black: #000000;
+      --dark-gray: #111827;
+      --purple-primary: rgb(88, 28, 135);
+      --purple-light: #9333ea;
+      --purple-dark: #581c87;
+      --purple-glow: rgba(88, 28, 135, 0.3);
+      --text-light: #ffffff;
+      --text-secondary: rgb(209, 213, 219);
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --gradient: linear-gradient(to bottom right, black, var(--purple-primary));
+      --card-bg: #1a1a1a;
+      --card-text-primary: #ffffff;
+      --card-text-secondary: #a9a9a9;
+    }
+
+    body {
+      background: var(--gradient);
+      color: var(--text-light);
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 25px 0;
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.25rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: rgb(209, 213, 219);
+      font-size: 1.125rem;
+      margin: 0;
+    }
+
+    .search-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    #searchBar {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: none;
+      border-radius: 0.375rem;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #searchBar:focus {
+      background-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-container::before {
+      content: "🔍";
+      position: absolute;
+      right: 35px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 330px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--purple-light);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 10px;
+      background-color: #262626;
+      padding: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      margin: 0 0 8px 0;
+      color: var(--card-text-primary);
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .card p {
+      color: var(--card-text-secondary);
+      margin: 5px 0 15px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .stars {
+      color: #f1c40f;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .badge.featured {
+      background-color: var(--purple-primary);
+      color: white;
+    }
+
+    .badge.popular {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    .badge.new {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .badge.secondary.gamdom,
+    .badge.secondary.stake {
+      position: absolute;
+      right: 15px;
+      top: 55px;
+      /* un peu plus bas pour créer de l'espace sous "Featured" */
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 22px;
+      line-height: 1;
+    }
+
+    .badge.secondary.gamdom {
+      background-color: #00b67a;
+      /* Gamdom color */
+      color: white;
+    }
+
+    .badge.secondary.gamdom span {
+      font-size: 80%;
+    }
+
+
+    .badge.secondary.stake {
+      background-color: #1b1f31;
+      /* Stake color */
+      color: white;
+    }
+
+    .banner-container {
+      text-align: center;
+      margin: 0 auto 30px;
+      max-height: 1000px;
+      opacity: 1;
+      visibility: visible;
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+
+    .banner-container.hidden {
+      opacity: 0;
+      visibility: hidden;
+      max-height: 0;
+      margin-bottom: 0;
+    }
+
+
+    .btn {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      background-color: var(--purple-primary);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--purple-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-light);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .badge.secondary.gamdom {
+      background-color: #00b67a;
+      /* Couleur verte de Gamdom */
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge.secondary.stake {
+      background-color: #1b1f31;
+      /* Couleur bleu foncé de Stake */
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge.secondary img {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+
+    footer {
+      margin-top: 60px;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    footer h2 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+
+    footer .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    footer .faq-item {
+      margin-bottom: 20px;
+    }
+
+    footer .faq-question {
+      color: white;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    footer .faq-answer {
+      color: rgb(209, 213, 219);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-secondary);
+      grid-column: 1 / -1;
+    }
+
+    .discord-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      padding: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .discord-button img {
+      width: 36px;
+      height: 36px;
+      opacity: 0.85;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .discord-button:hover img {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .search-container {
+        padding: 0 15px;
+        width: 63%;
+        margin-left: 10%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        height: 320px;
+        padding: 20px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        padding: 10px;
+      }
+    }
+
+    #promoBanner {
+      transition: opacity 0.4s ease;
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="https://discord.gg/gptfr" target="_blank" class="discord-button" aria-label="Join our Discord">
+    <img src="https://i.ibb.co/kspkVbDh/62b2261f038aad4d3ed7ca48.png" alt="Discord Icon" />
+  </a>
+
+  <header>
+    <h1>GPT Sites</h1>
+    <p>Track your earning opportunities</p>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="searchBar" placeholder="Search for a GPT site...">
+  </div>
+
+  <div id="promoBanner" class="banner-container visible">
+    <a href="https://earnloop.net/r/YLNMXR5KWR" target="_blank">
+      <img src="https://i.ibb.co/DDKBbsGV/banner-earnloop.png" alt="EarnLoop Banner"
+        style="max-width: 800px; width: 100%; border-radius: 20px; box-shadow: 0 6px 16px rgba(0,0,0,0.25); transition: transform 0.3s ease;"
+        onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+    </a>
+  </div>
+
+
+  <div class="grid" id="siteGrid"></div>
+
+  <footer>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <p class="faq-question">What is a GPT Site?</p>
+        <p class="faq-answer">A GPT (Get Paid To) site is a platform where users earn money by completing various online
+          tasks such as surveys, watching videos, testing apps, and more.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-question">How much can I make with GPT Sites?</p>
+        <p class="faq-answer">It varies per user and task, but dedicated users can earn modest to significant amounts.
+          Most users report earning between $5-$100 per month depending on time invested.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const sites = [
+      {name: "Earnlab", url: "https://earnlab.com/r/netrox", logo: "https://logo.clearbit.com/earnlab.com"},
+      {name: "CashinStyle", url: "https://cashinstyle.com/?ref=NETROX", logo: "https://cashinstyle.com/static/images/cis_logo_new.svg"},
+      {name: "FreeCash", url: "https://freecash.com/r/netroxx", logo: "https://logo.clearbit.com/freecash.com"},
+      {name: "CoinPayU", url: "https://www.coinpayu.com/?r=Netrox", logo: "https://www.coinpayu.com/static/newImg/index/earn_v2.gif"},
+      {name: "Gain.gg", url: "https://gain.gg/r/netrox", logo: "https://gain.gg/public/img/logoLightSmall.png"},
+      {name: "Chequity", url: "https://chequity.io/r/128BDC40", logo: "https://chequity.io/img/logo-teal.png"},
+      {name: "GemsLoot", url: "https://gemsloot.com/?aff=netrox", logo: "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='373'%20height='110'%20fill='none'%3e%3cpath%20fill='%23fff'%20d='M331.567%2055.74h-15.302V39.347h15.302v-17.39h24.842v17.39h16.494V55.74h-16.494v35.572h-24.842zm-49.519%2037.461c-6.425%200-12.122-1.225-17.09-3.676-4.968-2.518-8.844-5.896-11.626-10.136-2.716-4.305-4.041-9.009-3.974-14.11.132-5.166%201.656-9.87%204.57-14.109%202.915-4.24%206.923-7.585%2012.023-10.036%205.167-2.45%2010.93-3.676%2017.29-3.676%206.558%200%2012.321%201.225%2017.289%203.676%205.035%202.451%208.877%205.797%2011.526%2010.036%202.716%204.173%204.041%208.843%203.975%2014.01-.133%205.167-1.656%209.904-4.571%2014.21-2.848%204.239-6.823%207.617-11.924%2010.135-5.1%202.45-10.93%203.676-17.488%203.676m.1-17.587c2.12%200%203.974-.431%205.564-1.292%201.59-.928%202.815-2.153%203.677-3.677.861-1.59%201.324-3.378%201.391-5.365.066-1.988-.298-3.743-1.093-5.267a7.909%207.909%200%200%200-3.379-3.676c-1.457-.927-3.246-1.391-5.365-1.391-2.054%200-3.876.464-5.465%201.391a10.318%2010.318%200%200%200-3.776%203.776c-.861%201.523-1.358%203.213-1.491%205.067-.066%201.921.298%203.677%201.093%205.267a9.11%209.11%200%200%200%203.478%203.775c1.59.928%203.378%201.392%205.366%201.392m-69.965%2017.587c-6.426%200-12.122-1.225-17.091-3.676-4.968-2.518-8.843-5.896-11.625-10.136-2.716-4.305-4.041-9.009-3.975-14.11.133-5.166%201.656-9.87%204.571-14.109%202.915-4.24%206.922-7.585%2012.023-10.036%205.167-2.45%2010.93-3.676%2017.289-3.676%206.558%200%2012.322%201.225%2017.29%203.676%205.034%202.451%208.876%205.797%2011.526%2010.036%202.716%204.173%204.041%208.843%203.975%2014.01-.133%205.167-1.656%209.904-4.571%2014.21-2.849%204.239-6.823%207.617-11.924%2010.135-5.101%202.45-10.93%203.676-17.488%203.676m.099-17.587c2.12%200%203.975-.431%205.565-1.292%201.59-.928%202.815-2.153%203.676-3.677.861-1.59%201.325-3.378%201.391-5.365.067-1.988-.298-3.743-1.093-5.267a7.902%207.902%200%200%200-3.378-3.676c-1.457-.927-3.246-1.391-5.366-1.391-2.053%200-3.875.464-5.465%201.391a10.325%2010.325%200%200%200-3.776%203.776c-.861%201.523-1.358%203.213-1.49%205.067-.066%201.921.298%203.677%201.093%205.267a9.103%209.103%200%200%200%203.478%203.775c1.59.928%203.378%201.392%205.365%201.392m-63.79-58.426h24.742v74.125h-24.742z'/%3e%3cpath%20fill='url(%23a)'%20d='M1.782%2061.623a13.2%2013.2%200%200%201%200-13.246l24.244-41.8A13.2%2013.2%200%200%201%2037.444%200H93.64l10.321%2017.794H40.152L18.564%2055.06l11.296%2019.5H9.285z'/%3e%3cpath%20fill='url(%23b)'%20d='M86.037%20110H37.444a13.2%2013.2%200%200%201-11.418-6.577l-6.41-11.05h27.788l35.925-.044%2021.588-37.268-.952-1.643H60.862L73.15%2074.8H52.58L40.194%2053.502l.145-.084h-.145L50.59%2035.606h63.768l7.369%2012.78a13.2%2013.2%200%200%201-.016%2013.217l-24.256%2041.82A13.2%2013.2%200%200%201%2086.037%20110'/%3e%3cdefs%3e%3clinearGradient%20id='a'%20x1='62.832'%20x2='62.832'%20y1='-2.063'%20y2='111.623'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23E296FF'/%3e%3cstop%20offset='1'%20stop-color='%23B700FF'/%3e%3c/linearGradient%3e%3clinearGradient%20id='b'%20x1='62.832'%20x2='62.832'%20y1='-2.063'%20y2='111.623'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23E296FF'/%3e%3cstop%20offset='1'%20stop-color='%23B700FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"},
+      {name: "GrindBux", url: "https://grindbux.com/ref/netroxtv", logo: "https://logo.clearbit.com/grindbux.com"},
+      {name: "FastAsk", url: "https://fastask.net/?ref=296", logo: "https://i.ibb.co/m5YYk2c1/fastask-nobg-black.png"},
+      {name: "GimmeBux", url: "https://gimmebux.com/r/netrox", logo: "https://gimmebux.com/gimmebux-free-cash-online-logo.svg"},
+      {name: "Ysense", url: "https://www.ysense.com/?rb=139348631", logo: "https://www.ysense.com/_r403-32f092f/img/logo.svg"},
+      {name: "SwagBucks", url: "https://www.swagbucks.com/p/register?rb=195191067&rp=1", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLi_WBgaofdLcOjYbSUvfVd64z434ItW-WKA&s"},
+      {name: "SplitDrop", url: "https://splitdrop.com/friend/74388", logo: "https://splitdrop.com/images/logo.svg"},
+      {name: "GameHag", url: "https://gamehag.com/r/netrox", logo: "https://logo.clearbit.com/gamehag.com"},
+      {name: "KashRewards", url: "https://kashrewards.com/?a=383", logo: "https://logo.clearbit.com/kashrewards.com"},
+      {name: "GG2U", url: "https://premium.gg2u.org/?referrer=netroxtv", logo: "https://logo.clearbit.com/gg2u.org"},
+      {name: "Freeward", url: "https://freeward.net/ref/lom3w", logo: "https://logo.clearbit.com/freeward.net"},
+      {name: "Earnut", url: "https://earnut.com/?r=NetroxTV", logo: "https://logo.clearbit.com/earnut.com"},
+      {name: "CashHut", url: "https://cashhut.net/ref/L7TLOG", logo: "https://logo.clearbit.com/cashhut.net"},
+      {name: "WeCash", url: "https://wecash.one?inviteCode=iEnuXi6cT7MyzTUqGuqp", logo: "https://logo.clearbit.com/wecash.one"},
+      {name: "Earnably", url: "https://earnably.com/join/3079623", logo: "https://s3-eu-west-1.amazonaws.com/tpd/logos/5cf5373e3d0cda00014a380f/0x0.png"},
+      {name: "RBXRise", url: "https://rbxrise.com/?ref=461699957", logo: "https://logo.clearbit.com/rbxrise.com"},
+      {name: "GaintPlay", url: "https://gaintplay.com/refer/netrix", logo: "https://logo.clearbit.com/gaintplay.com"},
+      {name: "Paidcash", url: "https://paidcash.co/r/ZWWEYY", logo: "https://paidcash.co/assets/img/icon.png"},
+      {name: "Giftably", url: "https://giftably.net/login/Lucas", logo: "https://logo.clearbit.com/giftably.net"},
+      {name: "RewardXP", url: "https://www.rewardxp.com/join/1363972", logo: "https://www.rewardxp.com/images/logo.png?v=1593280623"},
+      {name: "PrizeBear", url: "https://prizebear.com/r/uWEzvO", logo: "https://prizebear.com/images/logo/logo.png?2?1"},
+      {name: "Gainify", url: "https://gainify.net/ref/ae28248e0ce0", logo: "https://i.postimg.cc/ydVhJCbn/d8a5ee0c27ce0b34598729b7d88bf74e.png"},
+      {name: "Sparkvey", url: "https://sparkvey.com/?ref=netrox", logo: "https://logo.clearbit.com/sparkvey.com"},
+      {name: "KlinkFinance", url: "https://join.klinkfinance.com/NFuII9neEPb", logo: "https://logo.clearbit.com/klinkfinance.com"},
+      {name: "EasyBucks", url: "https://www.easybucks.app?rb=160502816", logo: "https://play-lh.googleusercontent.com/C5UQXHtmuNVkhOavIEPMMbDqS2tO9keKcfR7QQ4NlNfF3_gfWUhkFuqrsuNpylGIcqM=w240-h480-rw"},
+      {name: "MoneyTune", url: "https://moneytune.page.link/o3QaXaYYsGDMwQscA", logo: "https://play-lh.googleusercontent.com/wwb4LFDO2xyC_8TZIOCG7MX5PgGlNGMtCOJjqKYBJqNVC_vofYgJbPczyIhRxqYqa7Ow=s48-rw"},
+      {name: "EarnLoop", url: "https://earnloop.net/r/YLNMXR5KWR", logo: "https://i.postimg.cc/TwCVgH8x/87d192b1c5fe2dbfb23a21380fc34613.png"},
+      {name: "Roaster Earn", url: "https://play.google.com/store/apps/details?id=com.roaster.earn.easy", logo: "https://play-lh.googleusercontent.com/wbGlIJVoKGWzO-3U9A-bZGHiPQDzVF_saAeZCYO9F8D3zHmHHjVfLBnRxwWt9mQ1Tg=w240-h480-rw"},
+      {name: "Kash.gg", url: "www.kash.gg/r/sG9CXqkxBkfk1ox0I08oXEykIHj1", logo: "https://gpthub.gg/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fkfi5mz5t%2Fproduction%2F607290524c03363d51c8e07449c4adde186b2c21-800x200.png%3Ffit%3Dmax%26auto%3Dformat&w=640&q=75"},
+      {name: "JumpTask", url: "https://www.jumptask.io/r/vulykapahymy", logo: "https://pbs.twimg.com/profile_images/1712419529811230720/hBZpD0zU_400x400.jpg"},
+      {name: "FreeMoneyCoins", url: "https://freemoneycoins.com/referral/netrox", logo: "https://freemoneycoins.com/assets/images/logo_icon.svg"},
+      {name: "Lootly", url: "https://lootly.fun/?ref=6rC6iPpjeYEjR46C", logo: "https://lootly.fun/assets/img/logo.svg"},
+      {name: "Offers2Cash", url: "https://offers2cash.com/invite/L2J1XL", logo: "https://ironscript-bucket.s3.eu-west-2.amazonaws.com/user_files/1/1623919505_logo-Offers2Cash-horizontal.png"},
+      {name: "MakeMoneyOnl", url: "https://makemoneyonl.io/r/MAUHQDEQ", logo: "https://makemoneyonl.io/_next/image?url=https%3A%2F%2Fmakemoneyonl.io%2Fimages%2Fmakemoneyonline_logo_white.png&w=384&q=75"},
+      {name: "CortalyCash", url: "https://cortalycash.com/ref/NetroxTV", logo: "https://cortalycash.com/Client/img/CortalyLogo.webp"},
+      {name: "EmberFund", url: "https://emberfund.onelink.me/ljTI/l4g18zii", logo: "https://play-lh.googleusercontent.com/njc4ZDIjq3tUrnwOrPtXmh7mwah8Ad9D4o2g1IMIae6HMsEBh84k2oaG2tScTXnJvug=w240-h480-rw"},
+      {name: "TurtleCash", url: "https://turtlecash.eu/index.php?inscription&p=NetroxTTV", logo: "https://turtlecash.eu/img/logo.png"},
+      {name: "Timebucks", url: "https://timebucks.com/?refID=225428688", logo: "https://timebucks.com/publishers/images/logo-shadow-small.png?v=2"},
+      {name: "ZemCrypto", url: "https://zemcrypto.com/?a=3781", logo: "https://zemcrypto.com/assets/logo.webp"},
+      {name: "EarnSesame", url: "https://earnsesame.com/r/PRTSY6MU", logo: "https://earnsesame.com/assets/navlogo-BQ7n9Md7.webp"},
+      {name: "NitroLoot", url: "https://nitroloot.com/r/a5zzpc7weh", logo: "https://logo.clearbit.com/nitroloot.com"},
+    ];
+
+    const siteGrid = document.getElementById('siteGrid');
+    const searchBar = document.getElementById('searchBar');
+
+    function displaySites(filteredSites) {
+      siteGrid.innerHTML = '';
+
+      if (filteredSites.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = '<h3>No sites found matching your search</h3><p>Try a different search term or browse all sites</p>';
+        siteGrid.appendChild(noResults);
+        return;
+      }
+
+      filteredSites.forEach((site, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // Handle missing logo
+        const logoImg = site.logo ?
+          `<img src="${site.logo}" alt="${site.name} Logo" onerror="this.src='https://via.placeholder.com/150?text=${site.name.charAt(0)}'; this.onerror=null;">` :
+          `<img src="https://via.placeholder.com/150?text=${site.name.charAt(0)}" alt="${site.name} Logo">`;
+
+        // Generate rating
+        let stars = '';
+        const rating = index < 12 ? 5 : 4;
+        for (let i = 0; i < rating; i++) {
+          stars += '★';
+        }
+
+        // Badge assignment
+        // Badge assignment
+        let badge = '';
+        if (index < 5) badge = '<div class="badge featured">Featured</div>';
+        else if (index >= 5 && index < 8 || index == 9 || index == 12) badge = '<div class="badge popular">Popular</div>';
+        else if (index == 13 || index == 14 || index == 8 || index == 26 || index == 44 || index == 45) badge = '<div class="badge new">New</div>';
+
+        // Secondary badge assignment
+        // Secondary badge assignment
+        let secondaryBadge = '';
+        if (site.name === "Earnlab") {
+          secondaryBadge = `
+            <div class="badge secondary gamdom">
+              <span>Gamdom +25%</span>
+            </div>
+          `;
+        }
+        if (site.name === "FreeCash" || site.name === "GimmeBux") {
+          secondaryBadge = `
+            <div class="badge secondary stake">
+              Stake +15%
+            </div>
+          `;
+        }
+
+
+        card.innerHTML = `
+            ${badge}
+            ${secondaryBadge}
+            <div class="card-content">
+                ${logoImg}
+                <h3>${site.name}</h3>
+                <p>Receive a $1 sign up bonus!</p>
+                <div class="stars">${stars}</div>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-primary" href="${site.url}" target="_blank">Visit Site</a>
+            </div>
+        `;
+        siteGrid.appendChild(card);
+
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, 30);
+      });
+    }
+
+    searchBar.addEventListener('input', () => {
+      const query = searchBar.value.toLowerCase().trim();
+      const filtered = sites.filter(site => site.name.toLowerCase().includes(query));
+      displaySites(filtered);
+
+      const promoBanner = document.getElementById('promoBanner');
+      if (query.length > 0) {
+        promoBanner.classList.remove('visible');
+        promoBanner.classList.add('hidden');
+      } else {
+        promoBanner.classList.remove('hidden');
+        promoBanner.classList.add('visible');
+      }
+    });
+
+    // Initial display
+    displaySites(sites);
+  </script>
+
+</body>
+
+</html>
