@@ -6,4 +6,4 @@ Updates are frequent since websites like this appear pretty offen.
 
 Link : <https://gptsites.royalhost.cloud/>
 
-![Preview](imgs/readmeimg.jpg)
+![Preview](imgs/readmeimg.png)
