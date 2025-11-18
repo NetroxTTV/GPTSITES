@@ -167,13 +167,12 @@ header {
   gap: 25px;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 0px;
 }
 
 .featured-section {
   grid-column: 1 / -1;
   margin-bottom: 40px;
-  max-width: 95%;
   margin: 5 auto 40px;
   padding: 0 20px;
 }
@@ -780,7 +779,7 @@ footer .faq-answer {
 /* Responsive Design for Featured Cards */
 @media (max-width: 768px) {
   .featured-section {
-    max-width: 95%;
+    max-width: 100%;
   }
 
   .featured-card {
@@ -867,11 +866,12 @@ footer .faq-answer {
   .btn-featured {
     padding: 8px 12px;
     font-size: 0.75rem;
-    min-width: 70px;
+    min-width: 55px;
     white-space: nowrap;
   }
 
   .bonus-badge {
+    max-width: auto;
     font-size: 0.7rem;
     padding: 4px 8px;
   }
