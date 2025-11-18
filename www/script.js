@@ -121,7 +121,7 @@ function createSecondaryBadgeCard(siteName) {
   return badgeMap[siteName] || '';
 }
 
-function displaySites(filteredSites) {
+function displaySites(filteredSites, isSearching = false) {
   siteGrid.innerHTML = '';
 
   if (filteredSites.length === 0) {
@@ -133,10 +133,10 @@ function displaySites(filteredSites) {
   }
 
   const sortedSites = [...filteredSites];
-  const featuredSites = sortedSites.slice(0, 4);
-  const regularSites = sortedSites.slice(4);
+  
+  const featuredSites = isSearching ? [] : sortedSites.slice(0, 4);
+  const regularSites = isSearching ? sortedSites : sortedSites.slice(4);
 
-  // Create featured section
   if (featuredSites.length > 0) {
     const featuredSection = document.createElement('div');
     featuredSection.className = 'featured-section';
@@ -174,15 +174,15 @@ function displaySites(filteredSites) {
     siteGrid.appendChild(featuredSection);
   }
 
-  // Create regular grid section
   if (regularSites.length > 0) {
     const regularSection = document.createElement('div');
     regularSection.className = 'regular-section';
-    regularSection.innerHTML = '<h2 class="section-title">All Sites</h2><div class="regular-grid" id="regularGrid"></div>';
+    
+    const sectionTitle = isSearching ? 'Search Results' : 'All Sites';
+    regularSection.innerHTML = `<h2 class="section-title">${sectionTitle}</h2><div class="regular-grid" id="regularGrid"></div>`;
     siteGrid.appendChild(regularSection);
     
     const regularGrid = document.getElementById('regularGrid');
-    let featuredCount = 0;
 
     regularSites.forEach((site, index) => {
       const card = document.createElement('div');
@@ -199,11 +199,16 @@ function displaySites(filteredSites) {
       }
 
       let badge = '';
-      if (site.featured) { 
-        if (featuredCount < 4) badge = '<div class="badge featured">Featured</div>';
-        else if (featuredCount < 7) badge = '<div class="badge popular">Popular</div>';
-        else if (featuredCount < 11) badge = '<div class="badge new">New</div>';
-        featuredCount++;
+      if (site.featured) {
+        const originalIndex = sites.findIndex(s => s.name === site.name && s.url === site.url);
+        
+        if (originalIndex >= 0 && originalIndex < 4) {
+          badge = '<div class="badge featured">Featured</div>';
+        } else if (originalIndex >= 4 && originalIndex < 7) {
+          badge = '<div class="badge popular">Popular</div>';
+        } else if (originalIndex >= 7 && originalIndex < 11) {
+          badge = '<div class="badge new">New</div>';
+        }
       }
 
       card.innerHTML = `
@@ -244,12 +249,14 @@ function debounce(func, wait) {
 
 const debouncedSearch = debounce(() => {
   const query = searchBar.value.toLowerCase().trim();
+  const isSearching = query.length > 0;
+  
   const filtered = sites.filter(site => site.name.toLowerCase().includes(query));
-  displaySites(filtered);
+  displaySites(filtered, isSearching);
 
   const promoBanner = document.getElementById('promoBanner');
   if (promoBanner) {
-    if (query.length > 0) {
+    if (isSearching) {
       promoBanner.classList.remove('visible');
       promoBanner.classList.add('hidden');
     } else {
