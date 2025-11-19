@@ -23,6 +23,8 @@ const sites = [
   {name: "Freeward", url: "https://freeward.net/ref/lom3w", logo: "imgs/freeward.png", featured: true, rates: ""},
   {name: "Earnut", url: "https://earnut.com/?r=NetroxTV", logo: "imgs/earnut.webp", featured: true, rates: ""},
   {name: "CashHut", url: "https://cashhut.net/ref/L7TLOG", logo: "imgs/cashhut.png", featured: true, rates: ""},
+  {name: "GrindBux", url: "https://grindbux.com/ref/netroxtv", logo: "imgs/GrindBux.png", featured: true, rates: ""},
+  {name: "CashEarn", url: "https://cashearn.gg/r/8L3D1M7", logo: "imgs/cashearn.webp", featured: true, rates: ""},
   {name: "WeCash", url: "https://wecash.one?inviteCode=iEnuXi6cT7MyzTUqGuqp", logo: "imgs/wecash.png", featured: true, rates: ""},
   {name: "Earnably", url: "https://earnably.com/join/3079623", logo: "imgs/earnably.png", featured: true, rates: ""},
   {name: "RBXRise", url: "https://rbxrise.com/?ref=461699957", logo: "imgs/rbxrise.png", featured: true, rates: ""},
