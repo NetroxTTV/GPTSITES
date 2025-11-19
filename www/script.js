@@ -46,12 +46,12 @@ const sites = [
   {name: "Lootly", url: "https://lootly.fun/?ref=6rC6iPpjeYEjR46C", logo: "imgs/lootly.png", featured: true, rates: ""},
   {name: "Offers2Cash", url: "https://offers2cash.com/invite/L2J1XL", logo: "imgs/offers2cash.png", featured: true, rates: ""},
   {name: "CortalyCash", url: "https://cortalycash.com/ref/NetroxTV", logo: "imgs/cortalyCash.png", featured: true, rates: ""},
-  {name: "EmberFund", url: "https://emberfund.onelink.me/ljTI/l4g18zii", logo: "imgs/emberFund.png", featured: true, rates: ""},
+  {name: "EmberFund", url: "https://emberfund.onelink.me/ljTI/l4g18zii", logo: "imgs/emberfund.png", featured: true, rates: ""},
   {name: "TurtleCash", url: "https://turtlecash.eu/index.php?inscription&p=NetroxTTV", logo: "imgs/turtleCash.png", featured: true, rates: ""},
   {name: "Timebucks", url: "https://timebucks.com/?refID=225428688", logo: "imgs/timebucks.png", featured: true, rates: ""},
   {name: "ZemCrypto", url: "https://zemcrypto.com/?a=3781", logo: "imgs/zemcrypto.png", featured: true, rates: ""},
   {name: "NitroLoot", url: "https://nitroloot.com/r/a5zzpc7weh", logo: "imgs/nitroloot.png", featured: true, rates: ""},
-  {name: "BambooRush", url: "https://bamboorush.com/?r=netrox", logo: "imgs/bambooRushLogo.webp", featured: true, rates: ""},
+  {name: "BambooRush", url: "https://bamboorush.com/?r=netrox", logo: "imgs/bamboorushLogo.webp", featured: true, rates: ""},
 ];
 
 const siteGrid = document.getElementById('siteGrid');
