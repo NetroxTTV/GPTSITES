@@ -260,6 +260,17 @@ const debouncedSearch = debounce(() => {
       promoBanner.classList.add('visible');
     }
   }
+
+  const bannerContainer = document.querySelector('.banner-container');
+  if (bannerContainer) {
+    if (isSearching) {
+      bannerContainer.classList.remove('visible');
+      bannerContainer.classList.add('hidden');
+    } else {
+      bannerContainer.classList.remove('hidden');
+      bannerContainer.classList.add('visible');
+    }
+  }
 }, 300); // Wait 300ms after user stops typing
 
 searchBar.addEventListener('input', debouncedSearch);
