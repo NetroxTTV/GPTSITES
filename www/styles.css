@@ -99,10 +99,6 @@ header {
   transition: all 0.3s ease;
 }
 
-.title-box:hover {
-  transform: translateY(-3px) scale(1.02);
-}
-
 .title-box h1 {
   margin: 0;
   font-size: 3.5rem;
@@ -905,4 +901,263 @@ footer .faq-answer {
 .copyright {
   font-size: 0.85rem;
   opacity: 0.7;
+}
+/* Offerwalls Page Styles */
+.offerwalls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px 4%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.offerwall-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--card-shadow);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.offerwall-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.offerwall-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(124, 58, 237, 0.3);
+  box-shadow: 0 12px 32px rgba(124, 58, 237, 0.2);
+}
+
+.offerwall-logo {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.offerwall-card h3 {
+  color: var(--card-text-primary);
+  font-size: 1.1rem;
+  margin: 10px 0 0 0;
+  font-weight: 600;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #0a0e1a 0%, #050812 100%);
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close {
+  color: var(--text-secondary);
+  float: right;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--blue-lighter);
+}
+
+#modalTitle {
+  color: var(--card-text-primary);
+  font-size: 1.8rem;
+  margin: 0 0 25px 0;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(124, 58, 237, 0.3);
+}
+
+.modal-sites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.modal-sites-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-sites-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.modal-sites-list::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.5);
+  border-radius: 10px;
+}
+
+.modal-sites-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.7);
+}
+
+.modal-site-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.modal-site-card:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  background: rgba(10, 14, 26, 0.95);
+}
+
+.modal-site-logo {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-site-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal-site-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.modal-site-info h4 {
+  color: var(--card-text-primary);
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.modal-site-info p {
+  color: var(--card-text-secondary);
+  margin: 0;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-small {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  min-width: 90px;
+  max-width: 10%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-light) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.btn-small:hover {
+  background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue-lighter) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+}
+
+.no-sites {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  padding: 40px 20px;
+}
+
+@media (max-width: 768px) {
+  .offerwalls-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px 4%;
+  }
+
+  .offerwall-card {
+    padding: 20px;
+  }
+
+  .offerwall-logo {
+    height: 80px;
+  }
+
+  .modal-content {
+    width: 80%;
+    padding: 15px;
+    margin: 10% auto;
+  }
+
+  #modalTitle {
+    font-size: 1.3rem;
+  }
+
+  .modal-site-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .modal-site-info p {
+    white-space: normal;
+  }
 }

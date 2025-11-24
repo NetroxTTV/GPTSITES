@@ -1,23 +1,22 @@
 const sites = [
-  // Top 4 Featured Sites
-  {name: "Earnlab", url: "https://earnlab.com/r/netrox", logo: "imgs/earnlab.png", featured: true, rates: "80-90% Rates | Highest Paying Website"},
-  {name: "CashinStyle", url: "https://cashinstyle.com/?ref=NETROX", logo: "imgs/cis.svg", featured: true, rates: "90% Rates | Highest Paying Offerwalls"},
-  {name: "GemsLoot", url: "https://gemsloot.com/?aff=netrox", logo: "imgs/gemsloot.jpg", featured: true, rates: "65-95% Rates | Instant Cashouts & Exclusive Offers"},
-  {name: "CoinPayU", url: "https://www.coinpayu.com/?r=Netrox", logo: "imgs/coinpayu.gif", featured: true, rates: "80-85% Rates | High Site Bonuses"},
+  {name: "Earnlab", url: "https://earnlab.com/r/netrox", logo: "imgs/earnlab.png", featured: true, rates: "80-90% Rates | Highest Paying Website", offerwalls: ["torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably"]},
+  {name: "CashinStyle", url: "https://cashinstyle.com/?ref=NETROX", logo: "imgs/cis.svg", featured: true, rates: "90% Rates | Highest Paying Offerwalls", offerwalls: ["torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably"]},
+  {name: "GemsLoot", url: "https://gemsloot.com/?aff=netrox", logo: "imgs/gemsloot.jpg", featured: true, rates: "65-95% Rates | Instant Cashouts & Exclusive Offers", offerwalls: ["torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably", "waxrewards"]},
+  {name: "CoinPayU", url: "https://www.coinpayu.com/?r=Netrox", logo: "imgs/coinpayu.gif", featured: true, rates: "80-85% Rates | High Site Bonuses", offerwalls: ["adgate", "torox", "ayetstudios", "mmwall", "hangmyads", "lootably"]},
   
-  // All other sites
-  {name: "Gain.gg", url: "https://gain.gg/r/netrox", logo: "imgs/gain.png", featured: true, rates: "70-80% Rates | Instant Cashouts"},
-  {name: "Chequity", url: "https://chequity.io/r/128BDC40", logo: "imgs/cheq.png", featured: true, rates: "80% Rates | Simple Website"},
-  {name: "FastAsk", url: "https://fastask.net/?ref=296", logo: "imgs/fastask.png", featured: true, rates: "100% Rates on WaxRewards"},
-  {name: "CashTask", url: "https://cashtask.net/r/47CWX93", logo: "imgs/cashtask.webp", featured: true, rates: "85% Rates on Offerwalls | Instant Cashouts"},
-  {name: "Azcash", url: "https://azcash.me/register?ref=netrox", logo: "imgs/azcash.ico", featured: true, rates: "85% Rates on Offerwalls | Exclusive Casino Offers"},
-  {name: "CashEarn", url: "https://cashearn.gg/r/8L3D1M7", logo: "imgs/cashearn.webp", featured: true, rates: "80% Rates on Offerwalls"},
-  {name: "CashTipay", url: "https://cashtipay.com/register?referral=netrox", logo: "imgs/cashtipay.png", featured: true, rates: "Brand New Site | A Lot of Potential"},
-  {name: "EzzCash", url: "https://ezz.cash/?ref=netrox", logo: "imgs/ezzcash.png", featured: true, rates: "70-75% Rates"},
-  {name: "FreeCash", url: "https://freecash.com/r/netroxx", logo: "imgs/freecash.png", featured: true, rates: "70-75% Rates | Instant Cashouts"},
-  {name: "GimmeBux", url: "https://gimmebux.com/r/netrox", logo: "imgs/gimmebux.svg", featured: true, rates: "Low Rates | Good Leaderboards"},
-  {name: "Ysense", url: "https://www.ysense.com/?rb=139348631", logo: "imgs/ysense.png", featured: true, rates: "Good Offers when boosts ONLY"},
-  {name: "SwagBucks", url: "https://www.swagbucks.com/p/register?rb=195191067&rp=1", logo: "imgs/swagbucks.png", featured: true, rates: "Good Offers when boosts ONLY"},
+  {name: "Gain.gg", url: "https://gain.gg/r/netrox", logo: "imgs/gain.png", featured: true, rates: "70-80% Rates | Instant Cashouts", offerwalls: ["adgate", "adtowall", "torox", "lootably", "myChips", "ayet", "adscend", "revu"]},
+  {name: "Chequity", url: "https://chequity.io/r/128BDC40", logo: "imgs/cheq.png", featured: true, rates: "80% Rates | Simple Website", offerwalls: ["torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably", "waxrewards"]},
+  {name: "FastAsk", url: "https://fastask.net/?ref=296", logo: "imgs/fastask.png", featured: true, rates: "100% Rates on WaxRewards", offerwalls: ["waxrewards", "lootably", "myChips"]},
+  {name: "CashTask", url: "https://cashtask.net/r/47CWX93", logo: "imgs/cashtask.webp", featured: true, rates: "85% Rates on Offerwalls | Instant Cashouts", offerwalls: ["waxrewards", "lootably", "adtowall", "monlix", "notik", "mmwall "]},
+  {name: "Azcash", url: "https://azcash.me/register?ref=netrox", logo: "imgs/azcash.ico", featured: true, rates: "85% Rates on Offerwalls | Exclusive Casino Offers", offerwalls: ["ayet", "adtowall", "monlix", "mmwall", "waxrewards", "notik"]},
+  
+  {name: "CashEarn", url: "https://cashearn.gg/r/8L3D1M7", logo: "imgs/cashearn.webp", featured: true, rates: "80% Rates on Offerwalls", offerwalls: ["waxrewards", "myChips", "adtowall", "ayet", "lootably", "notik"]},
+  {name: "CashTipay", url: "https://cashtipay.com/register?referral=netrox", logo: "imgs/cashtipay.png", featured: true, rates: "Brand New Site | A Lot of Potential", offerwalls: ["adgate", "torox"]},
+  {name: "EzzCash", url: "https://ezz.cash/?ref=netrox", logo: "imgs/ezzcash.png", featured: true, rates: "70-75% Rates", offerwalls: ["ayet", "lootably", "mmwall", "notik", "adtowall"]},
+  {name: "FreeCash", url: "https://freecash.com/r/netroxx", logo: "imgs/freecash.png", featured: true, rates: "70-75% Rates | Instant Cashouts", offerwalls: ["adgate", "adgem", "lootably", "torox", "ayet", "myChips", "notik", "mmwall", "revu", "monlix", "adscend"]},
+  {name: "GimmeBux", url: "https://gimmebux.com/r/netrox", logo: "imgs/gimmebux.svg", featured: true, rates: "Low Rates | Good Leaderboards", offerwalls: ["adgate", "lootably"]},
+  {name: "Ysense", url: "https://www.ysense.com/?rb=139348631", logo: "imgs/ysense.png", featured: true, rates: "Good Offers when boosts ONLY", offerwalls: ["adgate", "adgem"]},
+  {name: "SwagBucks", url: "https://www.swagbucks.com/p/register?rb=195191067&rp=1", logo: "imgs/swagbucks.png", featured: true, rates: "Good Offers when boosts ONLY", offerwalls: ["adgate", "revu"]},
   {name: "SplitDrop", url: "https://splitdrop.com/friend/74388", logo: "imgs/splitdrop.png", featured: true, rates: ""},
   {name: "GameHag", url: "https://gamehag.com/r/netrox", logo: "imgs/gamehag.png", featured: true, rates: ""},
   {name: "KashRewards", url: "https://kashrewards.com/?a=383", logo: "imgs/kashrewards.ico", featured: true, rates: ""},
@@ -274,7 +273,117 @@ const debouncedSearch = debounce(() => {
   }
 }, 300); // Wait 300ms after user stops typing
 
-searchBar.addEventListener('input', debouncedSearch);
+if (searchBar) {
+  searchBar.addEventListener('input', debouncedSearch);
+}
 
-// Initial display
-displaySites(sites);
+if (siteGrid) {
+  displaySites(sites);
+}
+
+const offerwalls = [
+  {id: "torox", name: "Torox", logo: "offerwalls/torox.png"},
+  {id: "adscend", name: "AdscendMedia", logo: "offerwalls/adscend.svg"},
+  {id: "ayetstudios", name: "AyeT Studios", logo: "offerwalls/ayetstudios.png"},
+  {id: "adtowall", name: "dtowall", logo: "offerwalls/adtowall.svg"},
+  {id: "adgatemedia", name: "AdGateMedia", logo: "offerwalls/adgatemedia.png"},
+  {id: "mmwall", name: "MM Wall", logo: "offerwalls/mmwall.svg"},
+  {id: "timewall", name: "TimeWall", logo: "offerwalls/timewall.svg"},
+  {id: "lootably", name: "Lootably", logo: "offerwalls/lootably.png"},
+  {id: "adgem", name: "AdGem", logo: "offerwalls/adgem.png"},
+  {id: "revu", name: "RevU", logo: "offerwalls/revenueuniverse.svg"},
+  {id: "monlix", name: "Monlix", logo: "offerwalls/monlix.svg"},
+  {id: "hangmyads", name: "Hang My Ads", logo: "offerwalls/hangmyads.png"},
+  {id: "myChips", name: "myChips", logo: "offerwalls/mychipsLogoDark.svg"},
+  {id: "notik", name: "notik", logo: "offerwalls/notiktome.svg"},
+  {id: "waxrewards", name: "Wax Rewards", logo: "offerwalls/waxrewards.png"}
+];
+
+function displayOfferwalls() {
+  const offerwallsGrid = document.getElementById('offerwallsGrid');
+  if (!offerwallsGrid) return;
+  
+  offerwallsGrid.innerHTML = '';
+  
+  offerwalls.forEach((offerwall, index) => {
+    const card = document.createElement('div');
+    card.className = 'offerwall-card';
+    
+    card.innerHTML = `
+      <img src="${offerwall.logo}" alt="${offerwall.name}" class="offerwall-logo">
+      <h3>${offerwall.name}</h3>
+    `;
+    
+    card.addEventListener('click', () => showSitesForOfferwall(offerwall.id, offerwall.name));
+    
+    offerwallsGrid.appendChild(card);
+    
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, index * 50);
+    });
+  });
+}
+
+function showSitesForOfferwall(offerwallId, offerwallName) {
+  const modal = document.getElementById('sitesModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSitesList = document.getElementById('modalSitesList');
+  
+  const sitesWithOfferwall = sites.filter(site => 
+    site.offerwalls && site.offerwalls.includes(offerwallId)
+  );
+  
+  modalTitle.textContent = `Sites with ${offerwallName}`;
+  modalSitesList.innerHTML = '';
+  
+  if (sitesWithOfferwall.length === 0) {
+    modalSitesList.innerHTML = '<p class="no-sites">No sites found with this offerwall</p>';
+  } else {
+    sitesWithOfferwall.forEach(site => {
+      const siteCard = document.createElement('div');
+      siteCard.className = 'modal-site-card';
+      
+      const logoImg = site.logo ?
+        `<img src="${site.logo}" alt="${site.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/60?text=${site.name.charAt(0)}'; this.onerror=null;">` :
+        `<img src="https://via.placeholder.com/60?text=${site.name.charAt(0)}" alt="${site.name}" loading="lazy">`;
+      
+      siteCard.innerHTML = `
+        <div class="modal-site-logo">${logoImg}</div>
+        <div class="modal-site-info">
+          <h4>${site.name}</h4>
+          <p>${site.rates}</p>
+        </div>
+        <a href="${site.url}" target="_blank" rel="noopener" class="btn btn-small">Visit</a>
+      `;
+      
+      modalSitesList.appendChild(siteCard);
+    });
+  }
+  
+  modal.style.display = 'block';
+}
+
+// Modal close functionality
+const modal = document.getElementById('sitesModal');
+const closeBtn = document.querySelector('.close');
+
+if (closeBtn) {
+  closeBtn.onclick = function() {
+    modal.style.display = 'none';
+  };
+}
+
+if (modal) {
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
+}
+
+// Initialize offerwalls page if on that page
+if (document.getElementById('offerwallsGrid')) {
+  displayOfferwalls();
+}
