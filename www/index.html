@@ -11,6 +11,23 @@
 </head>
 
 <body>
+  <button class="mobile-menu-button" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+  
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <h2 class="mobile-menu-title">GPT Sites</h2>
+    </div>
+    <ul class="mobile-menu-nav">
+      <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+      <li><a href="offerwalls.html" onclick="closeMobileMenu()">Offerwalls</a></li>
+      <li><a href="#exclusive" onclick="closeMobileMenu()">Exclusive</a></li>
+      <li><a href="https://discord.gg/gptfr" target="_blank" onclick="closeMobileMenu()">Discord</a></li>
+    </ul>
+    <div class="mobile-menu-footer">
+      <p>© 2025 GPT Sites. All rights reserved.</p>
+    </div>
+  </div>
+
   <nav class="top-nav">
     <a href="#home" class="nav-btn">Home</a>
     <a href="offerwalls.html" class="nav-btn">Offerwalls</a>

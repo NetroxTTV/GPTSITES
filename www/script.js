@@ -387,3 +387,52 @@ if (modal) {
 if (document.getElementById('offerwallsGrid')) {
   displayOfferwalls();
 }
+
+// Mobile menu functionality
+let isToggling = false;
+
+function toggleMobileMenu() {
+  if (isToggling) {
+    return;
+  }
+  
+  isToggling = true;
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  
+  if (!mobileMenu) {
+    isToggling = false;
+    return;
+  }
+  
+  mobileMenu.classList.toggle('active');
+  
+  if (mobileMenuButton) {
+    mobileMenuButton.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+  }
+  
+  if (mobileMenu.classList.contains('active')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+  
+  setTimeout(() => {
+    isToggling = false;
+  }, 300);
+}
+
+function closeMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  
+  if (!mobileMenu) return;
+  
+  mobileMenu.classList.remove('active');
+  
+  if (mobileMenuButton) {
+    mobileMenuButton.textContent = '☰';
+  }
+  
+  document.body.style.overflow = '';
+}
