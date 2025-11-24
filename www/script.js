@@ -163,7 +163,7 @@ function displaySites(filteredSites, isSearching = false) {
       requestAnimationFrame(() => {
         setTimeout(() => {
           featuredCard.classList.add('visible');
-        }, index * 100);
+        }, index * 50); // Reduced from 100ms to 50ms
       });
     });
     
@@ -225,7 +225,7 @@ function displaySites(filteredSites, isSearching = false) {
       requestAnimationFrame(() => {
         setTimeout(() => {
           card.classList.add('visible');
-        }, (index + 4) * 30);
+        }, (index + 4) * 15); // Reduced from 30ms to 15ms
       });
     });
   }
