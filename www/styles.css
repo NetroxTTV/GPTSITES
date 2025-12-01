@@ -1293,8 +1293,84 @@ footer .faq-answer {
   padding: 40px 20px;
 }
 
+/* Tips Section Styles */
+.tips-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+.tip-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.tip-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--blue-light);
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+}
+.tip-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 4px 8px rgba(124, 58, 237, 0.3));
+}
+.tip-card h3 {
+  color: var(--card-text-primary);
+  font-size: 1.3rem;
+  margin: 15px 0 10px 0;
+  font-weight: 600;
+}
+.tip-card p {
+  color: var(--card-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.search-container-inline {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  position: relative;
+}
+.search-container-inline input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--text-light);
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  outline: none;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+}
+.search-container-inline input:focus {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: rgba(124, 58, 237, 0.28);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.12);
+  outline: 3px solid rgba(124, 58, 237, 0.06);
+}
+.search-container-inline::before {
+  content: "🔍";
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 @media (max-width: 1000px) {
-  .offerwalls-grid {
+.offerwalls-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
     padding: 20px 4%;
@@ -1326,5 +1402,17 @@ footer .faq-answer {
 
   .modal-site-info p {
     white-space: normal;
+  }
+
+  .section-title {
+  color: var(--text-light);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   }
 }
