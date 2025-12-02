@@ -96,12 +96,13 @@
   .search-container-inline{
     width: 100%;
   }
+  
   .search-container-inline input {
     width: 90%;
     padding: 0.875rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(133, 133, 133, 0.2);
     border-radius: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(133, 133, 133, 0.2);
     color: var(--text-light);
     font-size: 1rem;
     transition: all 0.25s ease;

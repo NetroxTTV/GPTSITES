@@ -15,10 +15,11 @@
 
 #searchBar:focus,
 .search-container-inline input:focus {
-  background-color: rgba(255, 255, 255, 0.04);
-  border-color: rgba(124, 58, 237, 0.28);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.12);
-  outline: 3px solid rgba(124, 58, 237, 0.06);
+    border: 1px solid rgba(133, 133, 133, 0.2);
+    border-radius: 0.5rem;
+    background-color: rgba(133, 133, 133, 0.2);
+  outline: 3px solid rgba(255, 255, 255, 0.06);
+  
 }
 
 .search-container::before {
