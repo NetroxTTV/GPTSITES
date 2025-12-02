@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎄 GPT Sites - Christmas Edition</title>
+  <title>GPT Sites - Earn Money Online</title>
   
   <link rel="preload" href="styles.css" as="style">
   <link rel="preload" href="fonts/DoppioOne-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -80,9 +80,10 @@
     </div>
     <ul class="mobile-menu-nav">
       <li><a href="#home">Home</a></li>
-      <li><a href="#siteGrid">Sites</a></li>
+      <li><a href="#scrollArrow">Sites</a></li>
       <li><a href="offerwalls.html">Offerwalls</a></li>
       <li><a href="tips.html">Tips</a></li>
+      <li><a href="#FAQ">FAQ</a></li>
       <li><a href="https://discord.gg/gptfr" target="_blank">Discord</a></li>
     </ul>
     <div class="mobile-menu-footer">
@@ -92,34 +93,52 @@
  
   <nav class="top-nav">
     <a href="#home" class="nav-btn">Home</a>
+    <a href="#scrollArrow" class="nav-btn">Sites</a>
     <a href="offerwalls.html" class="nav-btn">Offerwalls</a>
     <a href="tips.html" class="nav-btn">Tips</a>
+    <a href="#FAQ" class="nav-btn">FAQ</a>
   </nav>
 
   <a href="https://discord.gg/gptfr" target="_blank" class="discord-button" aria-label="Join our Discord">
     <img src="https://i.ibb.co/kspkVbDh/62b2261f038aad4d3ed7ca48.png" alt="Discord Icon" />
   </a>
 
-  <header>
-    <div class="title-box" id="home">
-      <h1>GPT Sites</h1>
-      <p class="subtitle">Track your earning opportunities this Christmas! 🎁</p>
-    </div>
-  </header>
+  <div class="top-section">
+    <header>
+      <div class="title-box" id="home">
+        <h1>GPT Sites</h1>
+        <p class="subtitle"><strong>Welcome to GPT Sites !</strong> 
+          <br> Your earning opportunities this Christmas!
+          <br> Get paid to complete surveys, watch videos, and do tasks to earn real cash and gift cards.
+          <br> For more infos, visit our Tips & FAQ pages!
+        </p>
+      </div>
+    </header>
 
-  <div id="" class="banner-container visible">
-    <a href="#" id="bannerLink" target="_blank">
-      <img id="bannerImage" src="" alt="Promo Banner"
-        style="max-width: 100%; max-height: 240px; width: auto; height: auto; border-radius: 20px; box-shadow: 0 6px 16px rgba(0,0,0,0.25); transition: transform 0.3s ease;"
-        onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-    </a>
+    <div id="" class="banner-container visible">
+      <a href="#" id="bannerLink" target="_blank">
+        <img id="bannerImage" src="" alt="Promo Banner"
+          style="max-width: 100%; max-height: 346px; width: auto; height: auto; border-radius: 20px; box-shadow: 0 6px 16px rgba(0,0,0,0.25); transition: transform 0.3s ease;"
+          onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+    </div>
+    <p style="text-align: center; color: #888; font-size: 12px; margin-top: 8px;">Sponsored Banner</p>
+
+    <div class="scroll-arrow" id="scrollArrow" onclick="scrollToFeatured()">
+      <div class="scroll-arrow-icon">
+        <img src="imgs/arrow.png" alt="Scroll Down" class="arrow-img">
+      </div>
+      <div class="scroll-arrow-text">Scroll Down</div>
+    </div>
   </div>
+
+  <h2 class="section-title" id="featuredSites">Featured GPT Sites</h2>
 
   <div class="grid" id="siteGrid"></div>
 
   <footer>
     <h2>Frequently Asked Questions</h2>
-    <div class="faq-container">
+    <div class="faq-container" id="FAQ">
       <div class="faq-item">
         <p class="faq-question">What is a GPT Site?</p>
         <p class="faq-answer">A GPT (Get Paid To) site is a platform where users earn money by completing various online
