@@ -117,159 +117,173 @@ function createSecondaryBadgeCard(siteName) {
 }
 
 function displaySites(filteredSites, isSearching = false) {
-  siteGrid.innerHTML = '';
+    siteGrid.innerHTML = '';
 
-  if (filteredSites.length === 0) {
-    const noResults = document.createElement('div');
-    noResults.className = 'no-results';
-    noResults.innerHTML = '<h3>No sites found matching your search</h3><p>Try a different search term or browse other sites</p>';
-    siteGrid.appendChild(noResults);
-    return;
-  }
+    const featuredTitle = document.getElementById('featuredSites');
+    if (featuredTitle) {
 
-  const sortedSites = [...filteredSites];
-  
-  // Only show featured section when NOT searching
-  const featuredSites = isSearching ? [] : sortedSites.slice(0, 4);
-  const regularSites = isSearching ? sortedSites : sortedSites.slice(4);
+        featuredTitle.style.display = isSearching ? 'none' : 'block';
+    }
 
-  if (featuredSites.length > 0) {
-    const featuredSection = document.createElement('div');
-    featuredSection.className = 'featured-section';
-    
-    featuredSites.forEach((site, index) => {
-      const featuredCard = document.createElement('div');
-      featuredCard.className = index === 0 ? 'featured-card one' : 'featured-card';
+    const sortedSites = [...filteredSites];
+      // Only show featured section when NOT searching
+    const featuredSites = isSearching ? [] : sortedSites.slice(0, 4);
+    const regularSites = isSearching ? sortedSites : sortedSites.slice(4);
 
-      const logoImg = site.logo ?
-        `<img src="${site.logo}" alt="${site.name} Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/80?text=${site.name.charAt(0)}'; this.onerror=null;">` :
-        `<img src="https://via.placeholder.com/80?text=${site.name.charAt(0)}" alt="${site.name} Logo" loading="lazy">`;
-
-      featuredCard.innerHTML = `
-        <div class="featured-number">#${index + 1}</div>
-        <div class="featured-logo">${logoImg}</div>
-        <div class="featured-info">
-          <h3>${site.name}</h3>
-          <p>${site.rates}</p>
-          ${createSecondaryBadge(site.name)}
-        </div>
-        <div class="featured-action">
-          <a class="btn btn-featured" href="${site.url}" target="_blank" rel="noopener">Visit Site</a>
-        </div>
-      `;
-      
-      featuredSection.appendChild(featuredCard);
-      
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          featuredCard.classList.add('visible');
-        }, index * 50); // Reduced from 100ms to 50ms
-      });
-    });
-    
-    siteGrid.appendChild(featuredSection);
-  }
-
-  // Always show the regular section with search bar
-  const regularSection = document.createElement('div');
-  regularSection.className = 'regular-section';
-  
-  const sectionTitle = isSearching ? 'Search Results' : 'Other Sites';
-  regularSection.innerHTML = `
-    <h2 class="section-title">
-    ${sectionTitle}</h2>
-    <div class="search-container-inline">
-      <input type="text" id="dynamicSearchBar" placeholder="Search for a GPT site...">
-    </div> 
-    <div class="regular-grid" id="regularGrid"></div>`;
-  siteGrid.appendChild(regularSection);
-  
-  // Attach event listener to the dynamic search bar
-  const dynamicSearchBar = document.getElementById('dynamicSearchBar');
-  if (dynamicSearchBar) {
-    // Create a separate debounced function for the dynamic search bar
-    let dynamicDebounceTimeout;
-    dynamicSearchBar.addEventListener('input', function() {
-      clearTimeout(dynamicDebounceTimeout);
-      const query = this.value.toLowerCase().trim();
-      
-      dynamicDebounceTimeout = setTimeout(() => {
-        const isSearchingNow = query.length > 0;
-        const filtered = sites.filter(site => site.name.toLowerCase().includes(query));
-        displaySites(filtered, isSearchingNow);
+    if (featuredSites.length > 0) {
+        const featuredSection = document.createElement('div');
+        featuredSection.className = 'featured-section';
         
-        // Re-focus on the search bar and restore the query
-        const newSearchBar = document.getElementById('dynamicSearchBar');
-        if (newSearchBar) {
-          newSearchBar.value = query;
-          newSearchBar.focus();
-          // Set cursor at the end
-          newSearchBar.setSelectionRange(query.length, query.length);
+        featuredSites.forEach((site, index) => {
+            const featuredCard = document.createElement('div');
+            featuredCard.className = index === 0 ? 'featured-card one' : 'featured-card';
+            
+            const logoImg = site.logo ?
+                `<img src="${site.logo}" alt="${site.name} Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/80?text=${site.name.charAt(0)}'; this.onerror=null;">` :
+                `<img src="https://via.placeholder.com/80?text=${site.name.charAt(0)}" alt="${site.name} Logo" loading="lazy">`;
+
+            featuredCard.innerHTML = `
+                <div class="featured-number">#${index + 1}</div>
+                <div class="featured-logo">${logoImg}</div>
+                <div class="featured-info">
+                    <h3>${site.name}</h3>
+                    <p>${site.rates}</p>
+                    ${createSecondaryBadge(site.name)}
+                </div>
+                <div class="featured-action">
+                    <a class="btn btn-featured" href="${site.url}" target="_blank" rel="noopener">Visit Site</a>
+                </div>
+            `;
+            
+            featuredSection.appendChild(featuredCard);
+            
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    featuredCard.classList.add('visible');
+                }, index * 50);
+            });
+        });
+        
+        siteGrid.appendChild(featuredSection);
+    }
+    // Always show the regular section with search bar
+    const regularSection = document.createElement('div');
+    regularSection.className = 'regular-section';
+    
+    const sectionTitle = isSearching ? 'Search Results' : 'Other Sites';
+    regularSection.innerHTML = `
+        <h2 class="section-title">
+        ${sectionTitle}</h2>
+        <div class="search-container-inline">
+            <input type="text" id="dynamicSearchBar" placeholder="Search for a GPT site...">
+        </div> 
+        <div class="regular-grid" id="regularGrid"></div>`;
+    siteGrid.appendChild(regularSection);
+    const regularGrid = document.getElementById('regularGrid');
+
+    if (regularSites.length === 0 && isSearching) {
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = `
+            <h3>No sites found matching your search</h3>
+            <p>Try a different search term or browse other sites</p>
+        `;
+        regularGrid.appendChild(noResults);
+        
+    }
+    // Attach event listener to the dynamic search bar
+    const dynamicSearchBar = document.getElementById('dynamicSearchBar');
+    if (dynamicSearchBar) {
+        // Create a separate debounced function for the dynamic search bar
+        const currentQuery = isSearching && featuredTitle.style.display === 'none' 
+                           ? document.getElementById('searchBar')?.value || '' 
+                           : ''; 
+
+        const globalSearchBar = document.getElementById('searchBar');
+        if (globalSearchBar) {
+            dynamicSearchBar.value = globalSearchBar.value;
         }
 
-        // Hide/show "Featured GPT Sites" title when searching
-        const featuredTitle = document.getElementById('featuredSites');
-        if (featuredTitle) {
-          if (isSearchingNow) {
-            featuredTitle.style.display = 'none';
-          } else {
-            featuredTitle.style.display = 'block';
-          }
-        }
-      }, 300);
-    });
-  }
-  
-  const regularGrid = document.getElementById('regularGrid');
+        let dynamicDebounceTimeout;
+        dynamicSearchBar.addEventListener('input', function() {
+            clearTimeout(dynamicDebounceTimeout);
+            const query = this.value.toLowerCase().trim();
 
-  regularSites.forEach((site, index) => {
-    const card = document.createElement('div');
-    card.className = 'card';
+            if (globalSearchBar) {
+                globalSearchBar.value = this.value; 
+            }
 
-    const logoImg = site.logo ?
-      `<img src="${site.logo}" alt="${site.name} Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=${site.name.charAt(0)}'; this.onerror=null;">` :
-      `<img src="https://via.placeholder.com/150?text=${site.name.charAt(0)}" alt="${site.name} Logo" loading="lazy">`;
+            dynamicDebounceTimeout = setTimeout(() => {
+                const isSearchingNow = query.length > 0;
+                const filtered = sites.filter(site => site.name.toLowerCase().includes(query));
+                displaySites(filtered, isSearchingNow);
+                
+                // Re-focus on the search bar and restore the query
+                const newSearchBar = document.getElementById('dynamicSearchBar');
+                if (newSearchBar) {
+                    newSearchBar.value = query;
+                    newSearchBar.focus();
+                    // Set cursor at the end
+                    newSearchBar.setSelectionRange(query.length, query.length);
+                }
 
-    let stars = '';
-    const rating = site.featured ? 5 : 4;
-    for (let i = 0; i < rating; i++) {
-      stars += '★';
+                
+            }, 300);
+        });
     }
 
-    let badge = '';
-    if (site.featured) {
-      const originalIndex = sites.findIndex(s => s.name === site.name && s.url === site.url);
-      
-      if (originalIndex >= 0 && originalIndex < 4) {
-        badge = '<div class="badge featured">Featured</div>';
-      } else if (originalIndex >= 4 && originalIndex < 7) {
-        badge = '<div class="badge popular">Popular</div>';
-      } else if (originalIndex >= 7 && originalIndex < 11) {
-        badge = '<div class="badge new">New</div>';
-      }
+    
+    if (regularSites.length > 0) {
+        regularSites.forEach((site, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+           
+            
+            const logoImg = site.logo ?
+                `<img src="${site.logo}" alt="${site.name} Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=${site.name.charAt(0)}'; this.onerror=null;">` :
+                `<img src="https://via.placeholder.com/150?text=${site.name.charAt(0)}" alt="${site.name} Logo" loading="lazy">`;
+
+            let stars = '';
+            const rating = site.featured ? 5 : 4;
+            for (let i = 0; i < rating; i++) {
+                stars += '★';
+            }
+
+            let badge = '';
+            if (site.featured) {
+                const originalIndex = sites.findIndex(s => s.name === site.name && s.url === site.url);
+                
+                if (originalIndex >= 0 && originalIndex < 4) {
+                    badge = '<div class="badge featured">Featured</div>';
+                } else if (originalIndex >= 4 && originalIndex < 7) {
+                    badge = '<div class="badge popular">Popular</div>';
+                } else if (originalIndex >= 7 && originalIndex < 11) {
+                    badge = '<div class="badge new">New</div>';
+                }
+            }
+
+            card.innerHTML = `
+                ${badge}
+                ${createSecondaryBadgeCard(site.name)}
+                <div class="card-content">
+                    ${logoImg}
+                    <h3>${site.name}</h3>
+                    <p>${site.rates}</p>
+                    <div class="stars">${stars}</div>
+                </div>
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="${site.url}" target="_blank" rel="noopener">Visit Site</a>
+                </div>
+            `;
+            regularGrid.appendChild(card);
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, (index + 4) * 15);
+            });
+        });
     }
-
-    card.innerHTML = `
-        ${badge}
-        ${createSecondaryBadgeCard(site.name)}
-        <div class="card-content">
-            ${logoImg}
-            <h3>${site.name}</h3>
-            <p>${site.rates}</p>
-            <div class="stars">${stars}</div>
-        </div>
-        <div class="btn-group">
-            <a class="btn btn-primary" href="${site.url}" target="_blank" rel="noopener">Visit Site</a>
-        </div>
-    `;
-    regularGrid.appendChild(card);
-
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        card.classList.add('visible');
-      }, (index + 4) * 15); // Reduced from 30ms to 15ms
-    });
-  });
 }
 
 function debounce(func, wait) {
