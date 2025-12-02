@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Scroll arrow functionality
 function scrollToFeatured() {
-  const featuredSection = document.getElementById('scrollArrow');
+  const featuredSection = document.getElementById('scroll');
   if (featuredSection) {
     featuredSection.scrollIntoView({ 
       behavior: 'smooth',

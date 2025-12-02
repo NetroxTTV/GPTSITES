@@ -1100,7 +1100,6 @@ footer .faq-answer {
 /* Scroll Arrow */
 .scroll-arrow {
   position: absolute;
-  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1157,7 +1156,7 @@ footer .faq-answer {
 
 @media (max-width: 1000px) {
   .scroll-arrow {
-    bottom: 20px;
+    bottom: 70px;
   }
   
   .arrow-img {
@@ -1178,7 +1177,7 @@ footer .faq-answer {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 25px;
   padding: 40px 4%;
-  max-width: 1400px;
+  max-width: 1400px; 
   margin: 0 auto;
 }
 
