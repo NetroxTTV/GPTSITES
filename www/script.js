@@ -129,8 +129,9 @@ function displaySites(filteredSites, isSearching = false) {
 
   const sortedSites = [...filteredSites];
   
-  const featuredSites = sortedSites.slice(0, 4);
-  const regularSites = sortedSites.slice(4);
+  // Only show featured section when NOT searching
+  const featuredSites = isSearching ? [] : sortedSites.slice(0, 4);
+  const regularSites = isSearching ? sortedSites : sortedSites.slice(4);
 
   if (featuredSites.length > 0) {
     const featuredSection = document.createElement('div');
@@ -169,97 +170,106 @@ function displaySites(filteredSites, isSearching = false) {
     siteGrid.appendChild(featuredSection);
   }
 
-  if (regularSites.length > 0) {
-    const regularSection = document.createElement('div');
-    regularSection.className = 'regular-section';
-    
-    const sectionTitle = isSearching ? 'Search Results' : 'Other Sites';
-    regularSection.innerHTML = `
-      <h2 class="section-title">
-      ${sectionTitle}</h2>
-      <div class="search-container-inline">
-        <input type="text" id="dynamicSearchBar" placeholder="Search for a GPT site...">
-      </div> 
-      <div class="regular-grid" id="regularGrid"></div>`;
-    siteGrid.appendChild(regularSection);
-    
-    // Attach event listener to the dynamic search bar
-    const dynamicSearchBar = document.getElementById('dynamicSearchBar');
-    if (dynamicSearchBar) {
-      // Create a separate debounced function for the dynamic search bar
-      let dynamicDebounceTimeout;
-      dynamicSearchBar.addEventListener('input', function() {
-        clearTimeout(dynamicDebounceTimeout);
-        const query = this.value.toLowerCase().trim();
+  // Always show the regular section with search bar
+  const regularSection = document.createElement('div');
+  regularSection.className = 'regular-section';
+  
+  const sectionTitle = isSearching ? 'Search Results' : 'Other Sites';
+  regularSection.innerHTML = `
+    <h2 class="section-title">
+    ${sectionTitle}</h2>
+    <div class="search-container-inline">
+      <input type="text" id="dynamicSearchBar" placeholder="Search for a GPT site...">
+    </div> 
+    <div class="regular-grid" id="regularGrid"></div>`;
+  siteGrid.appendChild(regularSection);
+  
+  // Attach event listener to the dynamic search bar
+  const dynamicSearchBar = document.getElementById('dynamicSearchBar');
+  if (dynamicSearchBar) {
+    // Create a separate debounced function for the dynamic search bar
+    let dynamicDebounceTimeout;
+    dynamicSearchBar.addEventListener('input', function() {
+      clearTimeout(dynamicDebounceTimeout);
+      const query = this.value.toLowerCase().trim();
+      
+      dynamicDebounceTimeout = setTimeout(() => {
+        const isSearchingNow = query.length > 0;
+        const filtered = sites.filter(site => site.name.toLowerCase().includes(query));
+        displaySites(filtered, isSearchingNow);
         
-        dynamicDebounceTimeout = setTimeout(() => {
-          const isSearchingNow = query.length > 0;
-          const filtered = sites.filter(site => site.name.toLowerCase().includes(query));
-          displaySites(filtered, isSearchingNow);
-          
-          // Re-focus on the search bar and restore the query
-          const newSearchBar = document.getElementById('dynamicSearchBar');
-          if (newSearchBar) {
-            newSearchBar.value = query;
-            newSearchBar.focus();
-            // Set cursor at the end
-            newSearchBar.setSelectionRange(query.length, query.length);
-          }
-        }, 300);
-      });
-    }
-    
-    const regularGrid = document.getElementById('regularGrid');
-
-    regularSites.forEach((site, index) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const logoImg = site.logo ?
-        `<img src="${site.logo}" alt="${site.name} Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=${site.name.charAt(0)}'; this.onerror=null;">` :
-        `<img src="https://via.placeholder.com/150?text=${site.name.charAt(0)}" alt="${site.name} Logo" loading="lazy">`;
-
-      let stars = '';
-      const rating = site.featured ? 5 : 4;
-      for (let i = 0; i < rating; i++) {
-        stars += '★';
-      }
-
-      let badge = '';
-      if (site.featured) {
-        const originalIndex = sites.findIndex(s => s.name === site.name && s.url === site.url);
-        
-        if (originalIndex >= 0 && originalIndex < 4) {
-          badge = '<div class="badge featured">Featured</div>';
-        } else if (originalIndex >= 4 && originalIndex < 7) {
-          badge = '<div class="badge popular">Popular</div>';
-        } else if (originalIndex >= 7 && originalIndex < 11) {
-          badge = '<div class="badge new">New</div>';
+        // Re-focus on the search bar and restore the query
+        const newSearchBar = document.getElementById('dynamicSearchBar');
+        if (newSearchBar) {
+          newSearchBar.value = query;
+          newSearchBar.focus();
+          // Set cursor at the end
+          newSearchBar.setSelectionRange(query.length, query.length);
         }
-      }
 
-      card.innerHTML = `
-          ${badge}
-          ${createSecondaryBadgeCard(site.name)}
-          <div class="card-content">
-              ${logoImg}
-              <h3>${site.name}</h3>
-              <p>${site.rates}</p>
-              <div class="stars">${stars}</div>
-          </div>
-          <div class="btn-group">
-              <a class="btn btn-primary" href="${site.url}" target="_blank" rel="noopener">Visit Site</a>
-          </div>
-      `;
-      regularGrid.appendChild(card);
-
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          card.classList.add('visible');
-        }, (index + 4) * 15); // Reduced from 30ms to 15ms
-      });
+        // Hide/show "Featured GPT Sites" title when searching
+        const featuredTitle = document.getElementById('featuredSites');
+        if (featuredTitle) {
+          if (isSearchingNow) {
+            featuredTitle.style.display = 'none';
+          } else {
+            featuredTitle.style.display = 'block';
+          }
+        }
+      }, 300);
     });
   }
+  
+  const regularGrid = document.getElementById('regularGrid');
+
+  regularSites.forEach((site, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const logoImg = site.logo ?
+      `<img src="${site.logo}" alt="${site.name} Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=${site.name.charAt(0)}'; this.onerror=null;">` :
+      `<img src="https://via.placeholder.com/150?text=${site.name.charAt(0)}" alt="${site.name} Logo" loading="lazy">`;
+
+    let stars = '';
+    const rating = site.featured ? 5 : 4;
+    for (let i = 0; i < rating; i++) {
+      stars += '★';
+    }
+
+    let badge = '';
+    if (site.featured) {
+      const originalIndex = sites.findIndex(s => s.name === site.name && s.url === site.url);
+      
+      if (originalIndex >= 0 && originalIndex < 4) {
+        badge = '<div class="badge featured">Featured</div>';
+      } else if (originalIndex >= 4 && originalIndex < 7) {
+        badge = '<div class="badge popular">Popular</div>';
+      } else if (originalIndex >= 7 && originalIndex < 11) {
+        badge = '<div class="badge new">New</div>';
+      }
+    }
+
+    card.innerHTML = `
+        ${badge}
+        ${createSecondaryBadgeCard(site.name)}
+        <div class="card-content">
+            ${logoImg}
+            <h3>${site.name}</h3>
+            <p>${site.rates}</p>
+            <div class="stars">${stars}</div>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" href="${site.url}" target="_blank" rel="noopener">Visit Site</a>
+        </div>
+    `;
+    regularGrid.appendChild(card);
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, (index + 4) * 15); // Reduced from 30ms to 15ms
+    });
+  });
 }
 
 function debounce(func, wait) {
@@ -300,6 +310,16 @@ const debouncedSearch = debounce(() => {
     } else {
       bannerContainer.classList.remove('hidden');
       bannerContainer.classList.add('visible');
+    }
+  }
+
+  // Hide/show "Featured GPT Sites" title when searching
+  const featuredTitle = document.getElementById('featuredSites');
+  if (featuredTitle) {
+    if (isSearching) {
+      featuredTitle.style.display = 'none';
+    } else {
+      featuredTitle.style.display = 'block';
     }
   }
 }, 300); // Wait 300ms after user stops typing
