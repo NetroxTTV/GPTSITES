@@ -9,7 +9,6 @@ const sites = [
   {name: "FastAsk", url: "https://fastask.net/?ref=296", logo: "imgs/fastask.png", featured: true, rates: "100% Rates on WaxRewards", offerwalls: ["waxrewards", "lootably", "myChips"]},
   {name: "CashTask", url: "https://cashtask.net/r/47CWX93", logo: "imgs/cashtask.webp", featured: true, rates: "85% Rates on Offerwalls | Instant Cashouts", offerwalls: ["waxrewards", "lootably", "adtowall", "monlix", "notik", "mmwall "]},
   {name: "Azcash", url: "https://azcash.me/register?ref=netrox", logo: "imgs/azcash.ico", featured: true, rates: "85% Rates on Offerwalls | Exclusive Casino Offers", offerwalls: ["ayet", "adtowall", "monlix", "mmwall", "waxrewards", "notik"]},
-  
   {name: "CashEarn", url: "https://cashearn.gg/r/8L3D1M7", logo: "imgs/cashearn.webp", featured: true, rates: "80% Rates on Offerwalls", offerwalls: ["waxrewards", "myChips", "adtowall", "ayet", "lootably", "notik"]},
   {name: "CashTipay", url: "https://cashtipay.com/register?referral=netrox", logo: "imgs/cashtipay.png", featured: true, rates: "Brand New Site | A Lot of Potential", offerwalls: ["adgate", "torox"]},
   {name: "EzzCash", url: "https://ezz.cash/?ref=netrox", logo: "imgs/ezzcash.png", featured: true, rates: "70-75% Rates", offerwalls: ["ayet", "lootably", "mmwall", "notik", "adtowall"]},
@@ -123,7 +122,7 @@ function displaySites(filteredSites, isSearching = false) {
   if (filteredSites.length === 0) {
     const noResults = document.createElement('div');
     noResults.className = 'no-results';
-    noResults.innerHTML = '<h3>No sites found matching your search</h3><p>Try a different search term or browse all sites</p>';
+    noResults.innerHTML = '<h3>No sites found matching your search</h3><p>Try a different search term or browse other sites</p>';
     siteGrid.appendChild(noResults);
     return;
   }
@@ -174,9 +173,52 @@ function displaySites(filteredSites, isSearching = false) {
     const regularSection = document.createElement('div');
     regularSection.className = 'regular-section';
     
-    const sectionTitle = isSearching ? 'Search Results' : 'All Sites';
-    regularSection.innerHTML = `<h2 class="section-title">${sectionTitle}</h2><div class="regular-grid" id="regularGrid"></div>`;
+    const sectionTitle = isSearching ? 'Search Results' : 'Other Sites';
+    regularSection.innerHTML = `
+      <h2 class="section-title">
+      ${sectionTitle}</h2>
+      <div class="search-container-inline">
+        <input type="text" id="dynamicSearchBar" placeholder="Search for a GPT site...">
+      </div> 
+      <div class="regular-grid" id="regularGrid"></div>`;
     siteGrid.appendChild(regularSection);
+    
+    // Attach event listener to the dynamic search bar
+    const dynamicSearchBar = document.getElementById('dynamicSearchBar');
+    if (dynamicSearchBar) {
+      // Create a separate debounced function for the dynamic search bar
+      let dynamicDebounceTimeout;
+      dynamicSearchBar.addEventListener('input', function() {
+        clearTimeout(dynamicDebounceTimeout);
+        const query = this.value.toLowerCase().trim();
+        
+        dynamicDebounceTimeout = setTimeout(() => {
+          const isSearchingNow = query.length > 0;
+          const filtered = sites.filter(site => site.name.toLowerCase().includes(query));
+          displaySites(filtered, isSearchingNow);
+          
+          // Re-focus on the search bar and restore the query
+          const newSearchBar = document.getElementById('dynamicSearchBar');
+          if (newSearchBar) {
+            newSearchBar.value = query;
+            newSearchBar.focus();
+            // Set cursor at the end
+            newSearchBar.setSelectionRange(query.length, query.length);
+          }
+
+          const bannerContainer = document.querySelector('.banner-container');
+          if (bannerContainer) {
+            if (isSearchingNow) {
+              bannerContainer.classList.remove('visible');
+              bannerContainer.classList.add('hidden');
+            } else {
+              bannerContainer.classList.remove('hidden');
+              bannerContainer.classList.add('visible');
+            }
+          }
+        }, 300);
+      });
+    }
     
     const regularGrid = document.getElementById('regularGrid');
 
@@ -436,3 +478,27 @@ function closeMobileMenu() {
   
   document.body.style.overflow = '';
 }
+
+// Close mobile menu when clicking on navigation links
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-nav a');
+  
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      // Close the menu immediately
+      closeMobileMenu();
+      
+      // If it's an anchor link on the same page, handle scrolling
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }, 300);
+        }
+      }
+    });
+  });
+});
