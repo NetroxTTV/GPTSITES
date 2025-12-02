@@ -129,8 +129,8 @@ function displaySites(filteredSites, isSearching = false) {
 
   const sortedSites = [...filteredSites];
   
-  const featuredSites = isSearching ? [] : sortedSites.slice(0, 4);
-  const regularSites = isSearching ? sortedSites : sortedSites.slice(4);
+  const featuredSites = sortedSites.slice(0, 4);
+  const regularSites = sortedSites.slice(4);
 
   if (featuredSites.length > 0) {
     const featuredSection = document.createElement('div');
@@ -204,17 +204,6 @@ function displaySites(filteredSites, isSearching = false) {
             newSearchBar.focus();
             // Set cursor at the end
             newSearchBar.setSelectionRange(query.length, query.length);
-          }
-
-          const bannerContainer = document.querySelector('.banner-container');
-          if (bannerContainer) {
-            if (isSearchingNow) {
-              bannerContainer.classList.remove('visible');
-              bannerContainer.classList.add('hidden');
-            } else {
-              bannerContainer.classList.remove('hidden');
-              bannerContainer.classList.add('visible');
-            }
           }
         }, 300);
       });
@@ -459,6 +448,8 @@ function toggleMobileMenu() {
     document.body.style.overflow = '';
   }
   
+  updateArrowVisibility();
+  
   setTimeout(() => {
     isToggling = false;
   }, 300);
@@ -477,6 +468,7 @@ function closeMobileMenu() {
   }
   
   document.body.style.overflow = '';
+  updateArrowVisibility();
 }
 
 // Close mobile menu when clicking on navigation links
@@ -502,3 +494,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Scroll arrow functionality
+function scrollToFeatured() {
+  const featuredSection = document.getElementById('scrollArrow');
+  if (featuredSection) {
+    featuredSection.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}
+
+// Add smooth scroll to navigation links
+document.addEventListener('DOMContentLoaded', function() {
+  // Select all anchor links that point to sections on the same page
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
+      // Skip empty anchors
+      if (!href || href === '#') return;
+      
+      e.preventDefault();
+      const target = document.querySelector(href);
+      
+      if (target) {
+        target.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+});
+
+// Hide arrow when mobile menu is active
+function updateArrowVisibility() {
+  const scrollArrow = document.getElementById('scrollArrow');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  if (scrollArrow && mobileMenu) {
+    if (mobileMenu.classList.contains('active')) {
+      scrollArrow.classList.add('hidden');
+    } else {
+      scrollArrow.classList.remove('hidden');
+    }
+  }
+}
