@@ -47,24 +47,29 @@
 
 @keyframes glow {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(124, 58, 237, 0.5),
-                 0 0 40px rgba(124, 58, 237, 0.3);
+    text-shadow: 0 0 20px rgba(196, 30, 58, 0.5),
+                 0 0 40px rgba(196, 30, 58, 0.3);
   }
   50% {
-    text-shadow: 0 0 30px rgba(124, 58, 237, 0.8),
-                 0 0 60px rgba(124, 58, 237, 0.5);
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.8),
+                 0 0 60px rgba(212, 175, 55, 0.5);
   }
 }
 
 :root {
-  --blue-primary: #5b21b6;
-  --blue-light: #7c3aed;
-  --blue-lighter: #a78bfa;
+  --christmas-red: #c41e3a;
+  --christmas-green: #165b33;
+  --christmas-gold: #d4af37;
   --white: #ffffff;
-  --text-light: #e6eef8;
-  --text-secondary: #9aa6b2;
-  --gradient: linear-gradient(135deg, #061024 0%, #020616 50%, #00040a 100%);
-  --card-bg: rgba(8, 10, 18, 0.92);
+  --text-light: #f8f9fa;
+  --text-secondary: #cbd5e1;
+  --gradient: linear-gradient(135deg, #0a1f1a 0%, #1a0f0f 50%, #0d1b2a 100%);
+  --card-bg: rgba(22, 91, 51, 0.92);
+  
+  /* Legacy mappings */
+  --blue-primary: var(--christmas-red);
+  --blue-light: var(--christmas-light-red);
+  --blue-lighter: var(--christmas-gold);
 }
 
 * {
@@ -101,7 +106,7 @@ body {
   border-radius: 2rem;
   padding: 60px 40px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(124, 58, 237, 0.3);
+  border: 2px solid rgba(212, 175, 55, 0.3);
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -117,7 +122,7 @@ body {
 .error-code .digit {
   font-size: 8rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #c084fc 100%);
+  background: linear-gradient(135deg, #c41e3a 0%, #d4af37 50%, #165b33 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -134,7 +139,7 @@ body {
 .error-title {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #c084fc 100%);
+  background: linear-gradient(135deg, #c41e3a 0%, #d4af37 50%, #165b33 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -156,8 +161,8 @@ body {
 
 /* Search Suggestion */
 .search-suggestion {
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 12px;
   padding: 15px 25px;
   margin: 30px auto;
@@ -196,34 +201,34 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  background: linear-gradient(135deg, #c41e3a, #8b1526);
   color: white;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  background: linear-gradient(135deg, #e63946, #c41e3a);
   transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+  box-shadow: 0 6px 25px rgba(196, 30, 58, 0.6);
 }
 
 .btn-secondary {
   background: transparent;
   color: var(--text-light);
-  border: 2px solid var(--blue-light);
+  border: 2px solid var(--christmas-gold);
 }
 
 .btn-secondary:hover {
-  background: var(--blue-light);
-  color: white;
+  background: var(--christmas-gold);
+  color: #1a0f0f;
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
 }
 
 /* Fun Fact Section */
 .fun-fact {
-  background: rgba(59, 130, 246, 0.05);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(22, 91, 51, 0.15);
+  border: 1px solid rgba(22, 91, 51, 0.3);
   border-radius: 12px;
   padding: 20px;
   margin-top: 40px;
@@ -233,7 +238,7 @@ body {
 .fun-fact-label {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--blue-lighter);
+  color: var(--christmas-gold);
   margin-bottom: 10px;
 }
 
@@ -356,4 +361,48 @@ body {
   .fun-fact-text {
     font-size: 0.85rem;
   }
+}
+
+/* ========== CHRISTMAS ANIMATIONS FOR 404 PAGE ========== */
+
+/* Snowfall Animation */
+@keyframes snowfall-404 {
+  0% {
+    top: -10vh;
+    opacity: 1;
+  }
+  100% {
+    top: 110vh;
+    opacity: 0.3;
+  }
+}
+
+.snowflake {
+  animation: snowfall-404 10s linear infinite;
+}
+
+.snowflake:nth-child(odd) {
+  animation-duration: 12s;
+}
+
+.snowflake:nth-child(3n) {
+  animation-duration: 15s;
+}
+
+/* Christmas lights twinkle */
+@keyframes twinkle-404 {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.light {
+  animation: twinkle-404 1.5s ease-in-out infinite;
+}
+
+.light:nth-child(2n) {
+  animation-delay: 0.3s;
+}
+
+.light:nth-child(3n) {
+  animation-delay: 0.6s;
 }
