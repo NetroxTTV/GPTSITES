@@ -1199,8 +1199,8 @@ footer .faq-answer {
 
 .offerwall-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(124, 58, 237, 0.3);
-  box-shadow: 0 12px 32px rgba(124, 58, 237, 0.2);
+  border-color: white;
+  box-shadow: 0 15px 35px rgba(202, 202, 202, 0.3);
 }
 
 .offerwall-logo {
@@ -1236,7 +1236,7 @@ footer .faq-answer {
   background: linear-gradient(135deg, #0a0e1a 0%, #050812 100%);
   margin: 5% auto;
   padding: 20px;
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 2px solid white;
   border-radius: 20px;
   width: 90%;
   max-width: 800px;
@@ -1267,7 +1267,7 @@ footer .faq-answer {
 
 .close:hover,
 .close:focus {
-  color: var(--blue-lighter);
+  color: white;
 }
 
 #modalTitle {
@@ -1275,7 +1275,7 @@ footer .faq-answer {
   font-size: 1.8rem;
   margin: 0 0 25px 0;
   padding-bottom: 15px;
-  border-bottom: 2px solid rgba(124, 58, 237, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .modal-sites-list {
@@ -1297,12 +1297,12 @@ footer .faq-answer {
 }
 
 .modal-sites-list::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
 }
 
 .modal-sites-list::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.7);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .modal-site-card {
@@ -1317,7 +1317,7 @@ footer .faq-answer {
 }
 
 .modal-site-card:hover {
-  border-color: rgba(124, 58, 237, 0.4);
+  border-color: white;
   background: rgba(10, 14, 26, 0.95);
 }
 
@@ -1366,7 +1366,7 @@ footer .faq-answer {
   min-width: 90px;
   max-width: 10%;
   flex-shrink: 0;
-  background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-light) 100%);
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
   color: var(--white);
   border: none;
   border-radius: 8px;
@@ -1377,13 +1377,13 @@ footer .faq-answer {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .btn-small:hover {
-  background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue-lighter) 100%);
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
 }
 
 .no-sites {
@@ -1412,8 +1412,8 @@ footer .faq-answer {
 }
 .tip-card:hover {
   transform: translateY(-5px);
-  border-color: var(--blue-light);
-  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+  border-color: white;
+  box-shadow: 0 15px 35px rgba(202, 202, 202, 0.3);
 }
 .tip-icon {
   font-size: 3rem;
