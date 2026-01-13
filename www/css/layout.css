@@ -7,7 +7,7 @@ header {
 .title-box {
   display: inline-block;
   background: transparent;
-  padding: 30px 5px;
+  padding: 25px 5px;
   border-radius: 20px;
   text-align: center;
   margin-bottom: 1%;
@@ -18,7 +18,7 @@ header {
   margin-top: 10%;
   font-size: 3.5rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #c41e3a 0%, #d4af37 50%, #165b33 100%);
+  background: linear-gradient(135deg, #4a90e2 0%, #5ca3f5 50%, #7ec8ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -42,7 +42,7 @@ header {
   font-weight: 700;
   margin-bottom: 25px;
   text-align: center;
-  background: linear-gradient(135deg, #c41e3a 0%, #d4af37 50%, #165b33 100%);
+  background: linear-gradient(135deg, #4a90e2 0%, #5ca3f5 50%, #7ec8ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -256,7 +256,7 @@ footer .faq-answer {
 .mobile-menu-title {
   font-size: 2rem;
   font-weight: bold;
-  background: linear-gradient(135deg, #c41e3a 0%, #d4af37 50%, #165b33 100%);
+  background: linear-gradient(135deg, #4a90e2 0%, #5ca3f5 50%, #7ec8ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -1,21 +1,16 @@
 :root {
-  --christmas-red: #c41e3a;
-  --christmas-green: #5b3f16;
-  --christmas-gold: #d4af37;
-  --christmas-light-red: #e63946;
-  --christmas-light-green: #2d6a4f;
+  --blue-primary: #4a90e2;
+  --blue-secondary: #5ca3f5;
+  --blue-accent: #6bb6ff;
+  --blue-light: #7ec8ff;
+  --blue-dark: #2c5f8d;
   --white: #ffffff;
+  --off-white: #f5f7fa;
   --text-light: #f8f9fa;
   --text-secondary: #cbd5e1;
-  --card-shadow: 0 6px 24px rgba(196, 30, 58, 0.3);
-  --gradient: linear-gradient(135deg, #440404 0%, #1a0f0f 50%, #0d1b2a 100%);
-  --card-bg: rgba(22, 91, 51, 0.15);
+  --card-shadow: 0 6px 24px rgba(74, 144, 226, 0.15);
+  --gradient: linear-gradient(135deg, #0f1e33 0%, #1a2e4a 50%, #2a4a6e 100%);
+  --card-bg: rgba(74, 144, 226, 0.25);
   --card-text-primary: #f8f9fa;
   --card-text-secondary: #cbd5e1;
-  --snow-white: #f0f8ff;
-  
-  /* Legacy variable mappings for compatibility */
-  --blue-primary: var(--christmas-red);
-  --blue-light: var(--christmas-light-red);
-  --blue-lighter: var(--christmas-gold);
 }
