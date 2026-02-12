@@ -35,3 +35,49 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
+
+a {
+  color: #fbbf24;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #f59e0b;
+}
+
+p a,
+.subtitle a,
+.guide-section a,
+.guide-list a,
+li a:not(.nav-btn):not(.btn-primary):not(.btn-secondary) {
+  color: #fbbf24;
+  text-decoration: none;
+  background: linear-gradient(to right, #fbbf24, #f59e0b);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+p a:hover,
+.subtitle a:hover,
+.guide-section a:hover,
+.guide-list a:hover,
+li a:not(.nav-btn):not(.btn-primary):not(.btn-secondary):hover {
+  color: #fb923c;
+  background-size: 100% 2px;
+  border-bottom-color: #fb923c;
+}
+
+.highlight-box a {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+.highlight-box a:hover {
+  color: #93c5fd;
+}
