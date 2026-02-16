@@ -5,6 +5,87 @@
   margin: 0 auto;
 }
 
+.filter-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.filter-tag {
+  padding: 8px 16px;
+  margin: 0 8px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(209, 213, 219, 0.8);
+  opacity: 0.5;
+}
+
+.filter-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0.8;
+}
+
+.filter-tag.active {
+  border-color: currentColor;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+
+.filter-tag[data-filter="all"].active {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.filter-tag.tag-game {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.filter-tag.tag-finance {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.filter-tag.tag-casino {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.filter-tag.tag-f2p {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.filter-tag.tag-p2w {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.guide-card.hidden {
+  display: none;
+}
+
 .title-box-guide {
   display: inline-block;
   background: transparent;
@@ -158,6 +239,48 @@
   font-size: 0.75rem;
   font-weight: 700;
   margin-bottom: 1rem;
+}
+
+.guide-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.guide-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.guide-tag.tag-game {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.guide-tag.tag-finance {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.guide-tag.tag-casino {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.guide-tag.tag-f2p {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
+}
+
+.guide-tag.tag-p2w {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #ffffff;
 }
 
 .guide-content {
@@ -391,6 +514,20 @@
 
   .guides-container {
     padding: 0px 15px;
+  }
+
+  .filter-container {
+    padding: 20px 15px 0;
+  }
+
+  .filter-tags {
+    gap: 8px;
+    padding: 15px;
+  }
+
+  .filter-tag {
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
 
   .guide-content {

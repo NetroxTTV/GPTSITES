@@ -585,3 +585,35 @@ function updateArrowVisibility() {
     }
   }
 }
+
+// Guide filtering functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const filterTags = document.querySelectorAll('.filter-tag');
+  const guideCards = document.querySelectorAll('.guide-card');
+  
+  if (filterTags.length > 0 && guideCards.length > 0) {
+    filterTags.forEach(tag => {
+      tag.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        // Update active state
+        filterTags.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter guides
+        guideCards.forEach(card => {
+          if (filter === 'all') {
+            card.classList.remove('hidden');
+          } else {
+            const cardTags = card.getAttribute('data-tags');
+            if (cardTags && cardTags.includes(filter)) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          }
+        });
+      });
+    });
+  }
+});
