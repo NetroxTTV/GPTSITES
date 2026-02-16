@@ -9,7 +9,10 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 10px;
+  padding: 20px;
 }
 
 .filter-tags {
@@ -25,10 +28,10 @@
 }
 
 .filter-tag {
-  padding: 8px 16px;
-  margin: 0 8px;
+  padding: 10px 18px;
+  margin: 0;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -38,6 +41,10 @@
   background: rgba(255, 255, 255, 0.05);
   color: rgba(209, 213, 219, 0.8);
   opacity: 0.5;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .filter-tag:hover {
@@ -360,7 +367,7 @@
 
 .intro-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
 }
 
@@ -517,7 +524,8 @@
   }
 
   .filter-container {
-    padding: 20px 15px 0;
+    padding: 15px 10px;
+    gap: 8px;
   }
 
   .filter-tags {
@@ -526,8 +534,9 @@
   }
 
   .filter-tag {
-    padding: 8px 14px;
+    padding: 10px 16px;
     font-size: 0.8rem;
+    min-height: 44px;
   }
 
   .guide-content {
@@ -545,5 +554,147 @@
 
   .reward-list {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .intro-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .guide-intro,
+  .guide-section {
+    padding: 1rem;
+  }
+
+  .guide-content {
+    padding: 15px 10px;
+  }
+
+  .back-button {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .guide-images {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-section img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .filter-container {
+    padding: 12px 8px;
+    gap: 6px;
+  }
+
+  .filter-tag {
+    padding: 9px 14px;
+    font-size: 0.75rem;
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .intro-item {
+    padding-bottom: 0.75rem;
+  }
+
+  .intro-label {
+    font-size: 0.75rem;
+  }
+
+  .intro-value {
+    font-size: 1rem;
+  }
+
+  .guide-intro,
+  .guide-section {
+    padding: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .guide-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .guide-section h3 {
+    font-size: 1.25rem;
+  }
+
+  .guide-content {
+    padding: 10px 8px;
+  }
+
+  .back-button {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .guide-content .title-box h1 {
+    font-size: 2.5rem;
+  }
+
+  .highlight-box {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .reward-list {
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+  }
+
+  .reward-item {
+    padding: 0.875rem;
+  }
+
+  .reward-title {
+    font-size: 0.9rem;
+  }
+
+  .reward-text {
+    font-size: 0.85rem;
+  }
+
+  .guide-images {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .guide-list {
+    font-size: 0.9rem;
+  }
+
+  .filter-container {
+    padding: 10px 5px;
+    gap: 5px;
+  }
+
+  .filter-tag {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    min-height: 40px;
+    letter-spacing: 0.03em;
+  }
+
+  .guides-container {
+    padding: 20px 10px;
+  }
+
+  .title-box-guide h1 {
+    font-size: 2.5rem;
+  }
+
+  .title-box-guide .subtitle {
+    font-size: 1rem;
   }
 }
