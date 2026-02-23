@@ -2,17 +2,18 @@ const sites = [
     {name: "Earnlab", url: "https://earnlab.com/r/netrox", logo: "imgs/earnlab.png", featured: true, rates: "80-90% Rates | Highest Paying Website", offerwalls: ["primeearn", "torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably"]},
     {name: "CashinStyle", url: "https://cashinstyle.com/?ref=NETROX", logo: "imgs/cis.svg", featured: true, rates: "90% Rates | Highest Paying Offerwalls", offerwalls: ["primeearn", "torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably"]},
     {name: "GemsLoot", url: "https://gemsloot.com/?aff=netrox", logo: "imgs/gemsloot.jpg", featured: true, rates: "65-95% Rates | Instant Cashouts & Exclusive Offers", offerwalls: ["primeearn", "torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably", "waxrewards"]},
+    {name: "Earnopolis", url: "https://earnopolis.com/r/?r=netrox", logo: "imgs/earnopolis.webp", featured: true, rates: "95% Rates | Fast Cashouts & Exclusive Offers", offerwalls: ["primeearn", "torox", "myChips", "ayet", "adscend", "timewall"]},
+    {name: "MoonMiles", url: "https://moonmiles.io/r/netrox", logo: "imgs/moonmiles.png", featured: true, rates: "80% Rates | Fast Cashouts", offerwalls: ["torox", "revu", "ayet", "adtowall", "lootably", "adscend"]},
+    {name: "Pengu Pace", url: "https://go.scrambly.io/kPE2RU", logo: "imgs/pengu.png", featured: true, isApp: true, rates: "Exclusive Offers | Instant Cashout", offerwalls: []},
     {name: "Scrambly", url: "https://go.scrambly.io/ao1aoE", logo: "imgs/scrambly_ logo.jpg", featured: true, isApp: true, rates: "Exclusive Offers | Instant Cashout", offerwalls: []},
+    {name: "RewardFlow", url: "https://rewardflow.me?ref=NETROX", logo: "imgs/rewardflow.png", featured: true, rates: "New GPT Site | Multiple Offerwalls", offerwalls: ["adscend", "notik", "timewall", "adtowall", "lootably", "mmwall", "gemiwall"]},
     {name: "CoinPayU", url: "https://www.coinpayu.com/?r=Netrox", logo: "imgs/coinpayu.gif", featured: true, rates: "80-85% Rates | High Site Bonuses", offerwalls: ["primeearn", "adgate", "torox", "ayetstudios", "mmwall", "hangmyads", "lootably"]},
     {name: "CashTask", url: "https://cashtask.net/r/47CWX93", logo: "imgs/cashtask.webp", featured: true, rates: "85% Rates on Offerwalls | Instant Cashouts", offerwalls: ["gemiwall", "waxrewards", "lootably", "adtowall", "monlix", "notik", "mmwall"]},
     {name: "Chequity", url: "https://chequity.io/r/128BDC40", logo: "imgs/cheq.png", featured: true, rates: "80% Rates | Simple Website", offerwalls: ["torox", "ayetstudios", "revu", "adscend", "adgate", "adgem", "adtowall", "mmwall", "hangmyads", "lootably", "waxrewards"]},
-    {name: "Pengu Pace", url: "https://go.scrambly.io/kPE2RU", logo: "imgs/pengu.png", featured: true, isApp: true, rates: "Exclusive Offers | Instant Cashout", offerwalls: []},
-    {name: "RewardFlow", url: "https://rewardflow.me?ref=NETROX", logo: "imgs/rewardflow.png", featured: true, rates: "New GPT Site | Multiple Offerwalls", offerwalls: ["adscend", "notik", "timewall", "adtowall", "lootably", "mmwall", "gemiwall"]},
+    {name: "CashEarn", url: "https://cashearn.gg/r/8L3D1M7", logo: "imgs/cashearn.webp", featured: true, rates: "80% Rates on Offerwalls", offerwalls: ["gemiwall", "waxrewards", "myChips", "adtowall", "ayet", "lootably", "notik"]},
     {name: "RBXFast", url: "https://rbxfast.com/r/netrox", logo: "imgs/rbxfast.webp", featured: true, rates: "80% Rates", offerwalls: ["gemiwall", "adtowall", "waxrewards", "adscend", "lootably", "monlix", "myChips"]},
-    {name: "Earnopolis", url: "https://earnopolis.com/r/?r=netrox", logo: "imgs/earnopolis.webp", featured: true, rates: "95% Rates", offerwalls: ["primeearn", "torox", "myChips", "ayet", "adscend", "timewall"]},
     {name: "Azcash", url: "https://azcash.me/register?ref=netrox", logo: "imgs/azcash.ico", featured: true, rates: "85% Rates on Offerwalls | Exclusive Casino Offers", offerwalls: ["gemiwall", "ayet", "adtowall", "monlix", "mmwall", "waxrewards", "notik"]},
     {name: "Gain.gg", url: "https://gain.gg/r/netrox", logo: "imgs/gain.png", featured: true, rates: "70-80% Rates | Instant Cashouts", offerwalls: ["adgate", "primeearn", "adtowall", "torox", "lootably", "myChips", "ayet", "adscend", "revu"]},
-    {name: "CashEarn", url: "https://cashearn.gg/r/8L3D1M7", logo: "imgs/cashearn.webp", featured: true, rates: "80% Rates on Offerwalls", offerwalls: ["gemiwall", "waxrewards", "myChips", "adtowall", "ayet", "lootably", "notik"]},
     {name: "CashTipay", url: "https://cashtipay.com/register?referral=netrox", logo: "imgs/cashtipay.png", featured: true, rates: "Brand New Site | A Lot of Potential", offerwalls: ["adgate", "torox"]},
     {name: "EzzCash", url: "https://ezz.cash/?ref=netrox", logo: "imgs/ezzcash.png", featured: true, rates: "70-75% Rates", offerwalls: ["ayet", "lootably", "mmwall", "notik", "adtowall"]},
     {name: "FreeCash", url: "https://freecash.com/r/netroxx", logo: "imgs/freecash.png", featured: true, rates: "70-75% Rates | Instant Cashouts", offerwalls: ["adgate", "adgem", "lootably", "torox", "ayet", "myChips", "notik", "mmwall", "revu", "monlix", "adscend"]},
@@ -266,10 +267,10 @@ function displaySites(filteredSites, isSearching = false) {
                 
                 if (originalIndex >= 0 && originalIndex < 4) {
                     badge = '<div class="badge featured">Featured</div>';
-                } else if (originalIndex >= 4 && originalIndex < 7) {
-                    badge = '<div class="badge popular">Popular</div>';
-                } else if (originalIndex >= 7 && originalIndex < 11) {
+                } else if (originalIndex >= 4 && originalIndex < 8) {
                     badge = '<div class="badge new">New</div>';
+                } else if (originalIndex >= 8 && originalIndex < 12) {
+                    badge = '<div class="badge popular">Popular</div>';
                 }
             }
 
