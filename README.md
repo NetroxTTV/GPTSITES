@@ -42,7 +42,3 @@ You can easily modify:
 1. Upload all files to your web server or GitHub Pages repository.
 2. Ensure all file paths are correct.
 3. Clear browser cache if needed after updates.
-
-## License
-
-This project is open for personal and commercial use. Modify it to fit your needs.
