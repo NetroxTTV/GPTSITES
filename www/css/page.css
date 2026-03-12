@@ -150,6 +150,11 @@
   align-self: flex-start; /* align image to the left */
 }
 
+/* Center logo when card has no badges */
+.card.no-badge img {
+  align-self: center; /* center image when no badges */
+}
+
 
 .card:hover img {
   transform: scale(1.05);
